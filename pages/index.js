@@ -11,7 +11,6 @@ export default function Home({ data }) {
 }
 
 export async function getServerSideProps() {
-  console.log("hello");
   const GET_USER = "SELECT * FROM user_table;";
   const data_long = await db.query(GET_USER);
   const data = data_long.rows;
