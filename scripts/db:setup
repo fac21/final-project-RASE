@@ -1,0 +1,11 @@
+#! /bin/bash
+
+# stop script when an error occurs
+set -e
+
+psql -q -c "CREATE USER rase SUPERUSER PASSWORD '123'"
+echo "Created Postgres user 'rase'"
+
+psql -q -c "CREATE DATABASE final_project WITH OWNER rase"
+echo "Created Postgres database 'final_project'"
+
