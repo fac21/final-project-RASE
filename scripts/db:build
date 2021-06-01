@@ -3,5 +3,5 @@
 # stop script when an error occurs
 set -e
 
-psql example -q -f "./database/init.sql"
+psql final_project -q -f "./database/init.sql"
 echo "Populated database tables"
