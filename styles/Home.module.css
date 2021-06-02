@@ -108,6 +108,10 @@
   line-height: 1.5;
 }
 
+#mapid {
+  height: 180px;
+}
+
 .logo {
   height: 1em;
   margin-left: 0.5rem;

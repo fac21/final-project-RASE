@@ -14,10 +14,12 @@
         "bcryptjs": "^2.4.3",
         "crypto": "^1.0.1",
         "dotenv": "^10.0.0",
+        "leaflet": "^1.7.1",
         "next": "10.2.3",
         "pg": "^8.6.0",
-        "react": "17.0.2",
-        "react-dom": "17.0.2"
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-leaflet": "^3.2.0"
     },
     "devDependencies": {
         "cypress": "^7.4.0",
