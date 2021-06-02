@@ -14,9 +14,7 @@ export default async(req, res) => {
                 const { email, password } = req.body;
                 const user = await verifyUser(email, password);
                 const sid = await saveUserSession(user);
-                res.cookies("sid", sid, COOKIE_OPTIONS);
-                res.status(200).json({ message: user });
-                // res.status(200).redirect(`/`);
+                res.redirect("/");
                 break;
             }
         default:
