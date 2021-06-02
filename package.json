@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "bcryptjs": "^2.4.3",
+        "cookie": "^0.4.1",
         "crypto": "^1.0.1",
         "dotenv": "^10.0.0",
         "next": "10.2.3",
