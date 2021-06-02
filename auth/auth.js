@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import createUser from "../database/model";
+import insertUser from "../database/model";
 
 // const COOKIE_OPTIONS = {
 //   httpOnly: true,
@@ -8,10 +8,11 @@ import createUser from "../database/model";
 //   signed: true,
 // };
 
-export default function hashPassword(username, email, password) {
+
+export default function createUser(username, email, password) {
   return bcrypt
     .hash(password, 10)
-    .then((hash) => createUser(username, email, hash));
+    .then((hash) => insertUser(username, email, hash));
 }
 
 // export function saveUserSession(user) {
