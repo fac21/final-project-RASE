@@ -3,10 +3,8 @@ import Itinerary from "../../pages/itineraries";
 
 export default function Itineraries({ data }) {
   console.log("test", data);
-  // return <h1>Hello</h1>;
 
   const itineraries = data.map((itinerary) => {
-    console.log(itinerary);
     return (
       <section>
         <h1>
