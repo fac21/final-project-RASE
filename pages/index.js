@@ -3,6 +3,7 @@ import db from "../database/connection";
 import Layout from "../components/Layout/Layout.jsx";
 
 export default function Home({ data }) {
+
   return (
     <Layout home>
       <h1>travel app</h1>
