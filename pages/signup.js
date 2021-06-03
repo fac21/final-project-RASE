@@ -1,7 +1,19 @@
 import Layout from "../components/Layout/Layout.jsx";
 import Link from "next/link";
+import { authenticated } from "../auth/auth";
 
-export default function SignUp() {
+export const getServerSideProps = authenticated(async function ({ req, res }) {
+  console.log("hello");
+  // try {
+  //   return {};
+  // } catch (error) {
+  //   console.error(error);
+  //   return { props: {} };
+  // }
+  return { props: {} };
+});
+
+export default function SignUp(props) {
   return (
     <Layout>
       <h1>Create your account</h1>

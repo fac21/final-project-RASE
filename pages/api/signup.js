@@ -1,7 +1,6 @@
 import { createUser } from "../../auth/auth";
-import { authenticated } from "./login";
 
-export default authenticated(async (req, res) => {
+export default async (req, res) => {
   const method = req.method;
 
   switch (method) {
@@ -28,4 +27,4 @@ export default authenticated(async (req, res) => {
       res.status(500).json({ message: "We only accept POST requests" });
     }
   }
-});
+};

@@ -60,15 +60,22 @@ export const setCookie = (res, name, value, options = COOKIE_OPTIONS) => {
   res.setHeader("set-Cookie", serialize(name, String(stringValue), options));
 };
 export function parseCookies(req) {
-  return parse(req ? req.headers.cookie || "" : document.cookie);
+  //console.log("req", req, "req.header", req.header);
+  return parse(req.headers ? req.headers.cookie : "");
 }
 
 export const authenticated = (handler) => async (req, res) => {
+  console.log("request", req.req.headers.cookie);
+  const token = parse(req.req.headers ? req.req.headers.cookie : "");
+  console.log("token", token);
   verify(
-    parseCookies(req).sid,
+    token.sid,
+    // parseCookies(req).sid,
     process.env.GUID,
     async function (err, decoded) {
+      console.log("err", err, "decoded", decoded);
       if (!err && decoded) {
+        console.log("end");
         return await handler(req, res);
       }
       res.status(500).json({ message: "Sorry you are not authenticated" });
