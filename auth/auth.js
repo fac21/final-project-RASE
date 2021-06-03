@@ -60,7 +60,13 @@ export const setCookie = (res, name, value, options = COOKIE_OPTIONS) => {
   res.setHeader("set-Cookie", serialize(name, String(stringValue), options));
 };
 export function parseCookies(req) {
-  return parse(req ? req.headers.cookie || "" : document.cookie);
+  console.log(req.req.headers.cookie);
+
+  if (req.req) {
+    return parse(req ? req.req.headers.cookie || "" : document.cookie);
+  } else {
+    return parse(req ? req.headers.cookie || "" : document.cookie);
+  }
 }
 
 export const authenticated = (handler) => async (req, res) => {
@@ -71,7 +77,21 @@ export const authenticated = (handler) => async (req, res) => {
       if (!err && decoded) {
         return await handler(req, res);
       }
-      res.status(500).json({ message: "Sorry you are not authenticated" });
+      res.redirect("/")
+    }
+  );
+};
+
+export const pageAuthenticated = (handler) => async (req, res) => {
+  verify(
+    parseCookies(req).sid,
+    process.env.GUID,
+    async function (err, decoded) {
+      if (!err && decoded) {
+        console.log(await handler(req, res));
+        return await handler(req, res);
+      }
+      // res.redirect("/")
     }
   );
 };

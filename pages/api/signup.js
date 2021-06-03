@@ -1,5 +1,5 @@
 import { createUser } from "../../auth/auth";
-import { authenticated } from "./login";
+import { authenticated } from "../../auth/auth";
 
 export default authenticated(async (req, res) => {
   const method = req.method;
