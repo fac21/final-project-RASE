@@ -60,8 +60,6 @@ export const setCookie = (res, name, value, options = COOKIE_OPTIONS) => {
   res.setHeader("set-Cookie", serialize(name, String(stringValue), options));
 };
 export function parseCookies(req) {
-  console.log(req.req.headers.cookie);
-
   if (req.req) {
     return parse(req ? req.req.headers.cookie || "" : document.cookie);
   } else {
@@ -77,21 +75,9 @@ export const authenticated = (handler) => async (req, res) => {
       if (!err && decoded) {
         return await handler(req, res);
       }
-      res.redirect("/")
+      res.redirect("/login");
     }
   );
 };
 
-export const pageAuthenticated = (handler) => async (req, res) => {
-  verify(
-    parseCookies(req).sid,
-    process.env.GUID,
-    async function (err, decoded) {
-      if (!err && decoded) {
-        console.log(await handler(req, res));
-        return await handler(req, res);
-      }
-      // res.redirect("/")
-    }
-  );
-};
+

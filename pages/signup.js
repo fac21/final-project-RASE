@@ -1,27 +1,26 @@
 import Layout from "../components/Layout/Layout.jsx";
 import Link from "next/link";
-import { pageAuthenticated } from "../auth/auth";
 
-export const getServerSideProps = pageAuthenticated(async function ({
-  req,
-  res,
-}) {
-  console.log("hello");
-  // try {
-  //   return {};
-  // } catch (error) {
-  //   console.error(error);
-  //   return { props: {} };
-  // }
-  return {
-    redirect: {
-      destination: "/login",
-      statusCode: 307,
-    },
-  };
-});
+// export const getServerSideProps = ({ req, res }) => {
+//   console.log(req.);
 
-console.log(getServerSideProps());
+//   if (!user) {
+//     return {
+//       redirect: {
+//         destination: "/login",
+//         permanent: false,
+//       },
+//     };
+//   }
+
+//   return {
+//     props: { user },
+//   };
+// };
+
+// export const getServerSideProps = async function ({ req, res }) {
+//   pageAuthenticated(req, res);
+// };
 
 export default function SignUp() {
   return (
