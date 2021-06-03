@@ -5,9 +5,6 @@ import Link from "next/link";
 import SelectCountry from "../components/HomePage/SelectCountry.jsx";
 import Image from "next/image";
 import ItinerariesList from "../components/HomePage/ItinerariesList.jsx";
-import { ThemeProvider } from "styled-components";
-import theme from "../components/theme.jsx";
-import styles from "../styles/Home.module.css";
 
 export default function Home({ data, open, setOpen }) {
   return (
