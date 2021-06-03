@@ -4,7 +4,7 @@ import Nav from "../Nav/Nav.jsx";
 
 export const siteTitle = "UK Travel Guide";
 
-export default function Layout({ children, home }) {
+export default function Layout({ children, home, open, setOpen }) {
   return (
     <div>
       <Head>
@@ -21,7 +21,7 @@ export default function Layout({ children, home }) {
         <meta name="og:title" content={siteTitle} />
       </Head>
       <header>
-        <Nav />
+        <Nav open={open} setOpen={setOpen} />
       </header>
       <main>{children}</main>
       {!home && (
