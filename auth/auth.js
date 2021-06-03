@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import { createSession, selectUser, insertUser } from "../database/model";
 import { serialize, parse } from "cookie";
+import { sign } from "jsonwebtoken";
 import crypto from "crypto";
 
 export const COOKIE_OPTIONS = {
@@ -9,6 +10,11 @@ export const COOKIE_OPTIONS = {
   maxAge: 600000000,
   sameSite: "strict",
   signed: true,
+};
+
+export const JWT_OPTIONS = {
+  algorithm: "RS256",
+  expiresIn: "1h",
 };
 
 export async function createUser(username, email, password) {
@@ -37,9 +43,12 @@ export async function verifyUser(email, password) {
   }
 }
 
-export function saveUserSession(user) {
+export async function saveUserSession(user) {
   const sid = crypto.randomBytes(18).toString("base64");
-  return createSession(sid, { user });
+  await createSession(sid, { user });
+  const claims = { sid };
+  const jwt = await sign(claims, process.env.GUID);
+  return jwt;
 }
 
 export const setCookie = (res, name, value, options = COOKIE_OPTIONS) => {
