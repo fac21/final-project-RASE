@@ -1,4 +1,5 @@
-import { createUser } from "../../auth/auth";
+import { createUser, saveUserSession, setCookie } from "../../auth/auth";
+// import { authenticated } from "../../auth/auth";
 
 export default async (req, res) => {
   const method = req.method;
@@ -12,11 +13,12 @@ export default async (req, res) => {
       const { username, email, password } = req.body;
 
       try {
+        console.log(username, email, password);
         const user = await createUser(username, email, password);
-        console.log(user);
+        const jwt = await saveUserSession(user);
+        setCookie(res, "sid", jwt);
         res.redirect("/");
         break;
-        // res.status(200).json("account created");
       } catch (error) {
         console.error(error);
         res.status(200).json({ Error: "This account already exists" });

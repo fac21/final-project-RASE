@@ -1,5 +1,10 @@
 import bcrypt from "bcryptjs";
-import { createSession, selectUser, insertUser } from "../database/model";
+import {
+  createSession,
+  selectUser,
+  insertUser,
+  selectSession,
+} from "../database/model";
 import { serialize, parse } from "cookie";
 import { sign, verify } from "jsonwebtoken";
 import crypto from "crypto";
@@ -22,7 +27,6 @@ export async function createUser(username, email, password) {
     const hash = await bcrypt.hash(password, 10);
     const user = await insertUser(username, email, hash);
 
-    console.log("user", user);
     return user;
   } catch (error) {
     console.log(error);
@@ -36,6 +40,7 @@ export async function verifyUser(email, password) {
     if (!match) {
       throw new Error("Password mismatch");
     } else {
+      delete user.password;
       return user;
     }
   } catch (error) {
@@ -60,24 +65,38 @@ export const setCookie = (res, name, value, options = COOKIE_OPTIONS) => {
   res.setHeader("set-Cookie", serialize(name, String(stringValue), options));
 };
 export function parseCookies(req) {
-  if (req.req) {
-    return parse(req ? req.req.headers.cookie || "" : document.cookie);
-  } else {
-    return parse(req ? req.headers.cookie || "" : document.cookie);
-  }
+  return parse(req ? req.headers.cookie || "" : document.cookie);
 }
 
 export const authenticated = (handler) => async (req, res) => {
-  verify(
+  return verify(
     parseCookies(req).sid,
     process.env.GUID,
     async function (err, decoded) {
       if (!err && decoded) {
-        return await handler(req, res);
+        const sessionData = await selectSession(decoded.sid);
+        if (sessionData) {
+          req.session = sessionData;
+          return await handler(req, res);
+        } else {
+          res.redirect("/login");
+        }
       }
       res.redirect("/login");
     }
   );
 };
 
-
+export async function pageAuthenticated(req) {
+  return verify(
+    parseCookies(req).sid,
+    process.env.GUID,
+    async function (err, decoded) {
+      if (!err && decoded) {
+        const sessionData = await selectSession(decoded.sid);
+        if (sessionData) req.session = sessionData;
+        // return sessionData;
+      }
+    }
+  );
+}
