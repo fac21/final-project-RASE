@@ -1,6 +1,6 @@
 import React from "react";
 import { bool } from "prop-types";
-import { StyledMenu } from "./Menu.styled";
+import { StyledMenu } from "./menu.styled";
 
 const Menu = ({ open }) => {
   return (
