@@ -35,3 +35,8 @@ export function selectSession(sid) {
   `;
   return db.query(SELECT_SESSION, [sid]).then((result) => result.rows[0]);
 }
+
+export function deleteSession(sid) {
+  const DELETE_SESSION = "DELETE FROM sessions_table WHERE sid=$1";
+  return db.query(DELETE_SESSION, [sid]);
+}

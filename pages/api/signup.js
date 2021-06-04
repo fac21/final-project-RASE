@@ -1,5 +1,5 @@
 import { createUser, saveUserSession, setCookie } from "../../auth/auth";
-// import { authenticated } from "../../auth/auth";
+
 
 export default async (req, res) => {
   const method = req.method;
@@ -13,7 +13,6 @@ export default async (req, res) => {
       const { username, email, password } = req.body;
 
       try {
-        console.log(username, email, password);
         const user = await createUser(username, email, password);
         const jwt = await saveUserSession(user);
         setCookie(res, "sid", jwt);

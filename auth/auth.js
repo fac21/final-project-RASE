@@ -4,6 +4,7 @@ import {
   selectUser,
   insertUser,
   selectSession,
+  deleteSession,
 } from "../database/model";
 import { serialize, parse } from "cookie";
 import { sign, verify } from "jsonwebtoken";
@@ -12,7 +13,7 @@ import crypto from "crypto";
 export const COOKIE_OPTIONS = {
   path: "/",
   httpOnly: true,
-  maxAge: 600000000,
+  maxAge: 60 * 60,
   sameSite: "strict",
   signed: true,
 };
@@ -62,41 +63,99 @@ export const setCookie = (res, name, value, options = COOKIE_OPTIONS) => {
   if ("maxAge" in options) {
     options.expires = new Date(Date.now() + options.maxAge);
   }
-  res.setHeader("set-Cookie", serialize(name, String(stringValue), options));
+  res.setHeader("Set-Cookie", serialize(name, String(stringValue), options));
 };
 export function parseCookies(req) {
   return parse(req ? req.headers.cookie || "" : document.cookie);
 }
 
+// export const authenticated = (handler) => async (req, res) => {
+//   return verify(
+//     parseCookies(req).sid,
+//     process.env.GUID,
+//     async function (err, decoded) {
+//       if (!err && decoded) {
+//         const sessionData = await selectSession(decoded.sid);
+//         if (sessionData) {
+//           req.session = sessionData;
+//           return await handler(req, res);
+//         } else {
+//           res.redirect("/login");
+//         }
+//       }
+//       res.redirect("/login");
+//     }
+//   );
+// };
+
+// export async function pageAuthenticated(req) {
+//   return verify(
+//     parseCookies(req).sid,
+//     process.env.GUID,
+//     async function (err, decoded) {
+//       if (!err && decoded) {
+//         const sessionData = await selectSession(decoded.sid);
+//         if (sessionData) req.session = sessionData;
+//       }
+//     }
+//   );
+// }
+
 export const authenticated = (handler) => async (req, res) => {
-  return verify(
-    parseCookies(req).sid,
-    process.env.GUID,
-    async function (err, decoded) {
-      if (!err && decoded) {
-        const sessionData = await selectSession(decoded.sid);
-        if (sessionData) {
-          req.session = sessionData;
-          return await handler(req, res);
-        } else {
-          res.redirect("/login");
-        }
-      }
+  let decoded, err;
+  try {
+    const token = parseCookies(req).sid;
+    decoded = verify(token, process.env.GUID);
+  } catch (err) {
+    console.log(err);
+  }
+  if (!err && decoded) {
+    const sessionData = await selectSession(decoded.sid);
+    if (sessionData) {
+      req.session = sessionData;
+      return await handler(req, res);
+    } else {
       res.redirect("/login");
     }
-  );
+  } else {
+    res.redirect("/login");
+  }
 };
 
 export async function pageAuthenticated(req) {
-  return verify(
-    parseCookies(req).sid,
-    process.env.GUID,
-    async function (err, decoded) {
-      if (!err && decoded) {
-        const sessionData = await selectSession(decoded.sid);
-        if (sessionData) req.session = sessionData;
-        // return sessionData;
-      }
-    }
-  );
+  let decoded, err;
+  try {
+    const token = parseCookies(req).sid;
+    decoded = verify(token, process.env.GUID);
+  } catch (err) {
+    console.log(err);
+  }
+  if (!err && decoded) {
+    const sessionData = await selectSession(decoded.sid);
+    if (sessionData) req.session = sessionData;
+  } else {
+  }
+}
+
+export async function logOutSession(req, res) {
+  let decoded, err;
+  try {
+    const token = parseCookies(req).sid;
+    decoded = verify(token, process.env.GUID);
+  } catch (err) {
+    console.log(err);
+  }
+  if (!err && decoded) {
+    delete req.session;
+    await deleteSession(decoded.sid);
+    res.setHeader(
+      "Set-Cookie",
+      serialize("sid", String("deleted"), {
+        path: "/",
+        expires: new Date("Thu, 01 Jan 1950 00:00:00 GMT"),
+      }),
+    );
+  } else {
+    res.redirect("/login");
+  }
 }

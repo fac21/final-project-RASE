@@ -5,9 +5,7 @@ import { pageAuthenticated } from "../auth/auth";
 export async function getServerSideProps({ req, res }) {
   await pageAuthenticated(req);
   const sessionData = req.session;
-  console.log(sessionData);
 
-  
   if (sessionData) {
     return {
       redirect: {
