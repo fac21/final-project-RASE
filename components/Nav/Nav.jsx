@@ -5,10 +5,11 @@ import styled from "styled-components";
 
 const StyledMenu = styled.div`
   position: relative;
-  background: hotpink;
+  background: #fffdf9;
   height: fit-content;
 `;
 const StyledLink = styled.h1`
+  font-size: 1rem;
   max-width: 40rem;
   margin-left: auto;
   margin-right: auto;
