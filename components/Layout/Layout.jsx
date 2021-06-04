@@ -4,10 +4,15 @@ import Nav from "../Nav/Nav.jsx";
 
 export const siteTitle = "UK Travel Guide";
 
-export default function Layout({ children, home }) {
+export default function Layout({ children, home, open, setOpen }) {
   return (
     <div>
       <Head>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Prata&display=swap"
+          rel="stylesheet"
+        />
         <meta
           name="description"
           content="an app allowing users to search and contribute itineraries for UK-based trips"
@@ -21,7 +26,7 @@ export default function Layout({ children, home }) {
         <meta name="og:title" content={siteTitle} />
       </Head>
       <header>
-        <Nav />
+        <Nav open={open} setOpen={setOpen} />
       </header>
       <main>{children}</main>
       {!home && (

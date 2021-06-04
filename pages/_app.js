@@ -1,7 +1,12 @@
-import '../styles/globals.css'
+import React, { useState } from "react";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+    const [open, setOpen] = useState(false);
+
+    return <Component open = { open }
+    setOpen = { setOpen } {...pageProps }
+    />;
 }
 
-export default MyApp
+export default MyApp;
