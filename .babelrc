@@ -1,5 +1,4 @@
 {
   "presets": ["next/babel"],
-  "plugins": ["superjson-next"]
-  "plugins": [["styled-components", { "ssr": true }]]
+  "plugins": ["superjson-next", ["styled-components", { "ssr": true }]]
 }
