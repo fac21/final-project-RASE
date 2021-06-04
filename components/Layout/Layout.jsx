@@ -8,6 +8,11 @@ export default function Layout({ children, home, open, setOpen }) {
   return (
     <div>
       <Head>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Prata&display=swap"
+          rel="stylesheet"
+        />
         <meta
           name="description"
           content="an app allowing users to search and contribute itineraries for UK-based trips"

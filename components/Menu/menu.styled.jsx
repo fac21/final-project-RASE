@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledMenu = styled.nav`
+  background: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
