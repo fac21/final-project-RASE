@@ -17,14 +17,14 @@ export default function Itineraries({ data }) {
             />
           </a>
         </Link>
-        <div class="itinerary_info">
+        <div className="itinerary_info">
           <h2>
             <Link href={`/itineraries/${itinerary.id}`}>
               <a>{itinerary.name}</a>
             </Link>
           </h2>
           <p>{itinerary.duration} days</p>
-          <div class="itinerary_type">
+          <div className="itinerary_type">
             <p>{itinerary.need_car ? "need car" : "don't need car"}</p>
             <p>£{itinerary.budget}</p>
           </div>

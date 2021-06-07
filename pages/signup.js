@@ -20,9 +20,9 @@ export async function getServerSideProps({ req, res }) {
   };
 }
 
-export default function SignUp() {
+export default function SignUp({ open, setOpen }) {
   return (
-    <Layout>
+    <Layout open={open} setOpen={setOpen}>
       <h1>Create your account</h1>
       <form action="/api/signup" method="POST">
         <label htmlFor="username">

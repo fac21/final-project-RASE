@@ -4,9 +4,9 @@ import Itineraries from "../components/Itineraries/Itineraries.jsx";
 import { selectItineraries } from "../database/model";
 import { StyledSearchBar } from "../styles/StyledComponents/styles.styled.jsx";
 
-export default function Itinerary({ data }) {
+export default function Itinerary({ data, open, setOpen }) {
   return (
-    <Layout>
+    <Layout open={open} setOpen={setOpen}>
       <h1>Itineraries</h1>
       <form>
         <StyledSearchBar>
