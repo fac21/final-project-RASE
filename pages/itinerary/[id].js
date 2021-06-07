@@ -33,7 +33,7 @@ export default function Itinerary({ itineraryData }) {
             height={400}
           ></Image>
         </StyledDiv>
-        <p>{itineraryObject.need_car}</p>
+        <p>{itineraryObject.need_car ? "need car" : "don't need car"}</p>
         <p>£{itineraryObject.budget}</p>
         <hr></hr>
         <p>{itineraryObject.description}</p>
