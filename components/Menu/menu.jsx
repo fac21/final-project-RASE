@@ -9,8 +9,8 @@ const Menu = ({ open }) => {
       <a href="/">Scotland</a>
       <a href="/">Wales</a>
       <a href="/">N. Ireland</a>
-      <a href="/">Sign Up</a>
-      <a href="/">Log In</a>
+      <a href="/signup">Sign Up</a>
+      <a href="/login">Log In</a>
     </StyledMenu>
   );
 };
