@@ -7,7 +7,7 @@ export default function Itineraries({ data }) {
   const itineraries = data.map((itinerary) => {
     return (
       <StyledItineraries key={itinerary.id}>
-        <Link href={`/itineraries/${itinerary.id}`}>
+        <Link href={`/itinerary/${itinerary.id}`}>
           <a>
             <Image
               src={itinerary.img}
@@ -19,7 +19,7 @@ export default function Itineraries({ data }) {
         </Link>
         <div className="itinerary_info">
           <h2>
-            <Link href={`/itineraries/${itinerary.id}`}>
+            <Link href={`/itinerary/${itinerary.id}`}>
               <a>{itinerary.name}</a>
             </Link>
           </h2>
