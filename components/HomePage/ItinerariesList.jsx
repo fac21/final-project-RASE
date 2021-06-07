@@ -1,46 +1,55 @@
 import Image from "next/image";
 import Link from "next/link";
-import styles from "../../styles/Home.module.css";
+import { StyledItinerariesSection } from "./ItinerariesList.styled.jsx";
 
 export default function ItinerariesList() {
   return (
     <>
-      <h1>Itineraries</h1>
-      <ul className="grid">
-        <li>
-          <Image
-            src="/pembrokeshire.jpg"
-            alt="pembrokeshire"
-            width={200}
-            height={200}
-          />
-        </li>
-        <li>
-          <Image src="/london.jpg" alt="london" width={200} height={200} />
-        </li>
-        <li>
-          <Image src="/scotland.jpg" alt="scotland" width={200} height={200} />
-        </li>
-        <li>
-          <Image
-            src="/stonehenge.jpg"
-            alt="stonehenge"
-            width={200}
-            height={200}
-          />
-        </li>
-        <li>
-          <Image
-            src="/yorkshire.jpg"
-            alt="yorkshire"
-            width={200}
-            height={200}
-          />
-        </li>
-      </ul>
-      <Link href="/itineraries">
-        <a>See all</a>
-      </Link>
+      <StyledItinerariesSection>
+        <hr></hr>
+        <h1>Itineraries</h1>
+        <ul>
+          <li>
+            <Image
+              src="/pembrokeshire.jpg"
+              alt="pembrokeshire"
+              layout="intrinsic"
+              width={400}
+              height={400}
+            />
+          </li>
+          <li>
+            <Image src="/london.jpg" alt="london" width={400} height={400} />
+          </li>
+          <li>
+            <Image
+              src="/scotland.jpg"
+              alt="scotland"
+              width={400}
+              height={400}
+            />
+          </li>
+          <li>
+            <Image
+              src="/stonehenge.jpg"
+              alt="stonehenge"
+              width={400}
+              height={400}
+            />
+          </li>
+          <li>
+            <Image
+              src="/yorkshire.jpg"
+              alt="yorkshire"
+              width={400}
+              height={400}
+            />
+          </li>
+        </ul>
+        <Link href="/itineraries">
+          <a>See all</a>
+        </Link>
+      </StyledItinerariesSection>
     </>
   );
 }

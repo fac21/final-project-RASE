@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledMenu = styled.nav`
+  z-index: 1;
   background: white;
   display: ${({ open }) => (open ? "flex" : "none")};
   flex-direction: column;

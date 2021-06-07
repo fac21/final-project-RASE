@@ -8,36 +8,64 @@ import ItinerariesList from "../components/HomePage/ItinerariesList.jsx";
 import styled from "styled-components";
 
 const StyledSection = styled.section`
-  height: 15rem;
-  margin: 2.5rem;
+  max-width: 60rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  p {
+    margin-top: 3rem;
+    text-align: center;
+  }
+`;
+
+const StyledContainer = styled.div`
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 40rem;
+  padding: 1.5rem;
+`;
+
+const Box = styled.div`
+  height: 14rem;
+  background: #dbcfb0;
+  text-align: center;
   padding: 2rem;
   display: grid;
-  background: #dbcfb0;
   place-content: center;
-  text-align: center;
 `;
 
 export default function Home({ data, open, setOpen }) {
   return (
     <Layout open={open} setOpen={setOpen} home>
       <SelectCountry />
-      <Image
-        src="/cornwall.jpg"
-        alt="A cove with clear water and boats in the water and houses on the cliff overlooking the water"
-        layout=""
-        width={700}
-        height={475}
-      />
       <StyledSection>
-        <h4>
-          Discover the secres of the UK and share your itineraries with other
-          British tourism lovers
-        </h4>
+        <StyledContainer>
+          <Image
+            src="/cornwall.jpg"
+            alt="A cove with clear water and boats in the water and houses on the cliff overlooking the water"
+            layout=""
+            width={700}
+            height={475}
+          />
+        </StyledContainer>
+        <StyledContainer>
+          <Box>
+            <h4>
+              Discover the secrets of the UK and share your itineraries with
+              other British tourism lovers
+            </h4>
+          </Box>
+        </StyledContainer>
       </StyledSection>
       <ItinerariesList />
-      <section>
+      <StyledSection>
+        <hr></hr>
         <p> FAC Student Project Spring 2021 </p>
-      </section>
+      </StyledSection>
     </Layout>
   );
 }
