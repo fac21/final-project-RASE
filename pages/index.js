@@ -11,7 +11,7 @@ const StyledSection = styled.section`
   max-width: 60rem;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2rem;
+  margin-tlop: 2rem;
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
