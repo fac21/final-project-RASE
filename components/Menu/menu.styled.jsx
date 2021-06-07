@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledMenu = styled.nav`
   background: white;
-  display: flex;
+  display: ${({ open }) => (open ? "flex" : "none")};
   flex-direction: column;
   justify-content: center;
   height: 100vh;
