@@ -1,5 +1,24 @@
 import Layout from "../components/Layout/Layout.jsx";
 import Link from "next/link";
+import { pageAuthenticated } from "../auth/auth";
+
+export async function getServerSideProps({ req, res }) {
+  await pageAuthenticated(req);
+  const sessionData = req.session;
+
+  if (sessionData) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+}
 
 export default function SignUp() {
   return (
