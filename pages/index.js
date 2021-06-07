@@ -61,6 +61,7 @@ export default function Home({ data, open, setOpen }) {
           </Box>
         </StyledContainer>
       </StyledSection>
+
       <ItinerariesList />
       <StyledSection>
         <hr></hr>
