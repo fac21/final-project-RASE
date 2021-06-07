@@ -14,7 +14,7 @@ export const StyledItinerariesSection = styled.section`
   }
 
   ul {
-    margin-top: 3rem;
+    margin-top: 0.5rem;
     list-style: none;
     display: grid;
     grid-gap: 1rem;
@@ -29,5 +29,9 @@ export const StyledItinerariesSection = styled.section`
     color: #627964;
     display: block;
     margin-top: 2rem;
+  }
+
+  p {
+    margin-top: 1rem;
   }
 `;

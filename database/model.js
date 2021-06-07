@@ -18,6 +18,13 @@ RETURNING id, email, username;
     .then((result) => result.rows[0]);
 }
 
+// Itineraries
+
+export function selectItineraries() {
+  const SELECT_ITINERARARIES = ` SELECT * FROM itineraries_table;`;
+  return db.query(SELECT_ITINERARARIES).then((result) => result.rows);
+}
+
 // Session
 export function createSession(sid, data) {
   const INSERT_SESSION = `
