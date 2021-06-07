@@ -7,6 +7,9 @@ const StyledDiv = styled.div`
   justify-content: space-around;
   text-decoration: underline;
   padding: 1rem;
+  max-width: 60rem;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export default function SelectCountry() {
