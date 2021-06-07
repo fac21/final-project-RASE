@@ -19,10 +19,10 @@ const StyledDiv = styled.div`
   place-content: center;
 `;
 
-export default function Itinerary({ itineraryData }) {
+export default function Itinerary({ itineraryData, open, setOpen }) {
   const itineraryObject = JSON.parse(itineraryData);
   return (
-    <Layout>
+    <Layout open={open} setOpen={setOpen}>
       <StyledSection>
         <h1>{itineraryObject.name}</h1>
         <StyledDiv>

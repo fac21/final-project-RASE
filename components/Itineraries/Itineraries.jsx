@@ -7,7 +7,7 @@ export default function Itineraries({ data }) {
   const itineraries = data.map((itinerary) => {
     return (
       <StyledItineraries key={itinerary.id}>
-        <Link href={`/itineraries/${itinerary.id}`}>
+        <Link href={`/itinerary/${itinerary.id}`}>
           <a>
             <Image
               src={itinerary.img}
@@ -17,14 +17,14 @@ export default function Itineraries({ data }) {
             />
           </a>
         </Link>
-        <div class="itinerary_info">
+        <div className="itinerary_info">
           <h2>
-            <Link href={`/itineraries/${itinerary.id}`}>
+            <Link href={`/itinerary/${itinerary.id}`}>
               <a>{itinerary.name}</a>
             </Link>
           </h2>
           <p>{itinerary.duration} days</p>
-          <div class="itinerary_type">
+          <div className="itinerary_type">
             <p>{itinerary.need_car ? "need car" : "don't need car"}</p>
             <p>£{itinerary.budget}</p>
           </div>

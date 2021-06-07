@@ -11,7 +11,7 @@ export default function ItinerariesList({ data }) {
         <ul>
           {data.map((itinerary) => {
             return (
-              <Link key={itinerary.name} href={`/itineraries/${itinerary.id}`}>
+              <Link key={itinerary.name} href={`/itinerary/${itinerary.id}`}>
                 <a>
                   <li>
                     <Image
