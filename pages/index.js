@@ -32,8 +32,9 @@ export default function Home({ data, open, setOpen }) {
         <h4>
           Discover the secres of the UK and share your itineraries with other
           British tourism lovers
-        </h4>
+        </h4>{" "}
       </StyledSection>
+
       <ItinerariesList />
       <section>
         <p> FAC Student Project Spring 2021 </p>
