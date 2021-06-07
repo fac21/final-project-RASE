@@ -42,41 +42,13 @@ INSERT INTO sessions_table (sid, data) VALUES
 );
 
 INSERT INTO itineraries_table (user_id, name, img, country, need_car, budget, duration, description, created_at) VALUES
+  (1, '3 Day Trip to Cambridge', '/cambridge.jpg', 'England', FALSE, 300, 3, '{"Day One":{"description":"The Backs, Kings College Chapel"},   "Day Two":{"description":"Fitzwilliam Museum, Queens College Hall"},   "Day Three":{"description":"Cambridge University Botanic Garden, Bletchley Park"} }', (SELECT CURRENT_TIMESTAMP)),
+  (1, '3 Day Trip to Broadstairs', '/broadstairs.jpg', 'England', FALSE, 200, 3, '{ "Day One":{"description":"Church of St Peter-in-Thanet, Dover Castle"},   "Day Two":{     "description":"St Peters Village Tour, The The White Cliffs of Dover"   },   "Day Three":{     "description":"New Kent Art Gallery & Studio, Joss Bay"   } }', (SELECT CURRENT_TIMESTAMP)),
   (1, 'Lakes to Wales', '/pembrokeshire.jpg', 'Wales', TRUE, 700, 2, '{"Day One": {"description": "Lake District National Park"}, "Day Two": { "description": "Portmeirion, Penrhyndeudraeth"}, "Day Three": {"description": "Tenby"}}', (SELECT CURRENT_TIMESTAMP)),
   (1, 'Cornwall trip', '/cornwall.jpg', 'England', TRUE, 1000, 5, '{"Day One": {"description": "Kynance Cove, Helston"}, "Day Two": {"description": "Three-Isles of Scilly, Take the Scillonian Ferry"}, "Day Three": {"description": "St Ives Day Five- Woolacombe"}}', (SELECT CURRENT_TIMESTAMP)),
-  (1, 'Southwest England', '/cotswolds.jpg', 'England', TRUE, 1400, 10, '{"Day One": {"description": "Oxford, Stratford Upon Avon", "Day Two": {"description": "Cotswolds Day Three: Bath, Wells, Glastonbury"}, Day Four: Exmoor National Park, Croyde Bay, (Barnstaple), Bude Day Five: Cornwall- Tintagel, Saint Michaels Mount, Lands End, Minack Theatre, Mousehole Day Six: Lizard Point, Pendennis Castle, Dartmoor National Park, Exeter Day Seven: Beer, Seaton Down, Lyme Regis, Durdle Door, Lulworth Cove Day Eight: Portsmouth, Arundel, Brighton Day Nine: Brighton, Beachy Head, Rye Day Ten: Rye, White Cliffs of Dover, Canterbury', (SELECT CURRENT_TIMESTAMP)),
-  (1, '3 Day Trip to Cambridge', '/cambridge.jpg', 'England', FALSE, 300, 3, '{   "Day One":{     "description":"The Backs, Kings College Chapel"   },   "Day Two":{"description":"Fitzwilliam Museum, Queens College Hall"},   "Day Three":{"description":"Cambridge University Botanic Garden, Bletchley Park"} }', (SELECT CURRENT_TIMESTAMP)),
-  (1, '3 Day Trip to Broadstairs', '/broadstairs.jpg', 'England', FALSE, 200, 3, '{   "Day One":{     "description":"Church of St Peter-in-Thanet, Dover Castle"   },   "Day Two":{     "description":"St Peters Village Tour, The The White Cliffs of Dover"   },   "Day Three":{     "description":"New Kent Art Gallery & Studio, Joss Bay"   } }', (SELECT CURRENT_TIMESTAMP));
-
+  (1, 'Southwest England', '/cotswolds.jpg', 'England', TRUE, 1400, 10, '{"Day One": {"description": "Oxford, Stratford Upon Avon"}, "Day Two": {"description": "Cotswolds Day Three: Bath, Wells, Glastonbury"}, "Day Four": {"description": "Exmoor National Park, Croyde Bay, (Barnstaple) Bude"}, "Day Five": {"description":"Cornwall- Tintagel, Saint Michaels Mount, Lands End, Minack Theatre, Mousehole"}, "Day Six": {"description":"Lizard Point, Pendennis Castle, Dartmoor National Park, Exeter"}, "Day Seven": {"description":"Beer, Seaton Down, Lyme Regis, Durdle Door, Lulworth Cove"}, "Day Eight":{"description":"Portsmouth, Arundel, Brighton"}, "Day Nine": {"description": "Brighton, Beachy Head, Rye"}, "Day Ten": {"description":"Rye, White Cliffs of Dover, Canterbury"}}', (SELECT CURRENT_TIMESTAMP)),
+  (1, 'Loch Ness', '/scotland.jpg', 'Scotland', TRUE, 1200, 5, '{"Day One": {"description": "Edinburgh"}, "Day Two": {"description": "Cairngorms National Park"}, "Day Three": {"description": "Loch Ness"}, "Day Four": {"description": "Inverness"}, "Day Five": {"description": "Ullapool"}}', (SELECT CURRENT_TIMESTAMP));
 COMMIT;
 
-{
-  'Day one':{
-    'description':''
-  },
-  'Day one':{
-    'description':''
-  },
-  'Day one':{
-    'description':''
-  },
-  'Day one':{
-    'description':''
-  },
-}
 
 
-
-'Day One  Day Two  Day Three '
-
-'{
-  "Day One":{
-    "description":"The Backs, Kings College Chapel"
-  },
-  "Day Two":{
-    "description":"Fitzwilliam Museum, Queens College Hall"
-  },
-  "Day Three":{
-    "description":"Cambridge University Botanic Garden, Bletchley Park"
-  }
-}'
