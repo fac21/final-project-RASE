@@ -1,6 +1,10 @@
 import Layout from "../components/Layout/Layout.jsx";
-
 import { pageAuthenticated } from "../auth/auth";
+import {
+  StyledSection,
+  StyledForm,
+} from "../styles/styledcomponents/auth.styled";
+import Link from "next/link";
 
 export async function getServerSideProps({ req, res }) {
   await pageAuthenticated(req);
@@ -23,14 +27,24 @@ export async function getServerSideProps({ req, res }) {
 export default function Login() {
   return (
     <Layout>
-      <h1>Login</h1>
-      <form action="/api/login" method="post">
-        <label htmlFor="email">Email</label>
-        <input type="email" name="email" id="email" required />
-        <label htmlFor="password">Password</label>
-        <input type="password" name="password" id="password" required />
-        <input type="submit" value="Login" />
-      </form>
+      <StyledSection>
+        <h1>Welcome Back!</h1>
+        <p>Log in to continue</p>
+        <StyledForm action="/api/login" method="post">
+          <label htmlFor="email">Email</label>
+          <input type="email" name="email" id="email" required />
+          <label htmlFor="password">Password</label>
+          <input type="password" name="password" id="password" required />
+          <button type="submit" value="Login">
+            Login
+          </button>
+        </StyledForm>
+        <Link href="/login">
+          <p>
+            Don't have an account? <a>Sign up</a>
+          </p>
+        </Link>
+      </StyledSection>
     </Layout>
   );
 }
