@@ -15,16 +15,16 @@ const StyledDiv = styled.div`
 export default function SelectCountry() {
   return (
     <StyledDiv>
-      <Link href="/itineraries">
+      <Link href="/countries/england">
         <a>England</a>
       </Link>
-      <Link href="/itineraries">
+      <Link href="/countries/wales">
         <a>Wales</a>
       </Link>
-      <Link href="/itineraries">
+      <Link href="/countries/scotland">
         <a>Scotland</a>
       </Link>
-      <Link href="/itineraries">
+      <Link href="/countries/northern_ireland">
         <a>N. Ireland</a>
       </Link>
     </StyledDiv>

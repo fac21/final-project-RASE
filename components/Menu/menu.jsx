@@ -1,16 +1,29 @@
 import React from "react";
 import { bool } from "prop-types";
 import { StyledMenu } from "./menu.styled";
+import Link from "next/link";
 
 const Menu = ({ open }) => {
   return (
     <StyledMenu id={"menu"} open={open}>
-      <a href="/england">England</a>
-      <a href="/">Scotland</a>
-      <a href="/">Wales</a>
-      <a href="/">N. Ireland</a>
-      <a href="/signup">Sign Up</a>
-      <a href="/login">Log In</a>
+      <Link href="/countries/england">
+        <a>England</a>
+      </Link>
+      <Link href="/countries/wales">
+        <a>Wales</a>
+      </Link>
+      <Link href="/countries/scotland">
+        <a>Scotland</a>
+      </Link>
+      <Link href="/countries/northern_ireland">
+        <a>N. Ireland</a>
+      </Link>
+      <Link href="/signup">
+        <a>Sign Up</a>
+      </Link>
+      <Link href="/login">
+        <a>Log In</a>
+      </Link>
     </StyledMenu>
   );
 };
