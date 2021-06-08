@@ -21,6 +21,24 @@ const StyledDiv = styled.div`
 
 export default function Itinerary({ itineraryData, open, setOpen }) {
   const itineraryObject = JSON.parse(itineraryData);
+  const description = itineraryObject.description;
+  //console.log(itineraryObject.description);
+
+  //   let value;
+  //   const dailyDescription = () => {
+  //     Object.keys(description).forEach(function (key) {
+  //       value = description[key].description;
+  //       console.log(value);
+  //       return <li>{value}</li>;
+  //     });
+  //   };
+
+  //console.log(Object.values(description));
+  // const dailyDescription = () => {
+  //   for (let day in description) {
+  //     <li>{day.description}</li>;
+  //   }
+  // };
   return (
     <Layout open={open} setOpen={setOpen}>
       <StyledSection>
@@ -36,7 +54,15 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
         <p>{itineraryObject.need_car ? "need car" : "don't need car"}</p>
         <p>£{itineraryObject.budget}</p>
         <hr></hr>
-        <p>{itineraryObject.description}</p>
+        <ul>
+          {Object.keys(description).map((key) => (
+            <li key={description[key]}>
+              <p>{key}:</p>
+              <p>{description[key].description}</p>
+            </li>
+          ))}
+        </ul>
+        {/* <p>{itineraryObject.description["Day One"].description}</p> */}
       </StyledSection>
     </Layout>
   );
