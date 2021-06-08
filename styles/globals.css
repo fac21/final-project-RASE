@@ -20,3 +20,8 @@ h1 {
   display: flex;
   justify-content: center;
 }
+
+.homeLink {
+  position: absolute;
+  bottom: 40px;
+}

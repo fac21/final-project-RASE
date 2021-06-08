@@ -62,7 +62,7 @@ export default function SignUp({ open, setOpen }) {
           <button>Create account</button>
         </StyledForm>
 
-        <Link href="/login">
+        <Link href="/signup">
           <p>
             Already have an account? <a>Log in</a>
           </p>

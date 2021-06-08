@@ -39,7 +39,7 @@ export default function Login({ open, setOpen }) {
             Login
           </button>
         </StyledForm>
-        <Link href="/login">
+        <Link href="/signup">
           <p>
             Don't have an account? <a>Sign up</a>
           </p>

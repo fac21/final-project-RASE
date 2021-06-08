@@ -30,7 +30,7 @@ export default function Layout({ children, home, open, setOpen }) {
       </header>
       <main>{children}</main>
       {!home && (
-        <div>
+        <div className="homeLink">
           <Link href="/">
             <a>← Back to home</a>
           </Link>
