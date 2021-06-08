@@ -20,7 +20,7 @@ describe("check burger menu", () => {
 
   it("navigate one of the england page", () => {
     cy.get("#burger").click();
-    cy.get("#menu").get("a[href*='england']").click();
+    cy.get("#menu").get("a[href*='england']").click({ multiple: true });
     cy.url().should("include", "/england");
   });
 
@@ -78,14 +78,14 @@ describe("Check individual itinerary pages", () => {
 });
 
 describe("Checking cookies", () => {
-  it("Checking sign up works", () => {
-    cy.visit("/signup");
-    cy.get("form").find("input[name='email']").type("test@test.com");
-    cy.get("form").find("input[name='password']").type("test");
-    cy.get("form").submit();
-    cy.url().should("include", "/");
-    cy.getCookie("sid").should("exist");
-  });
+  // it("Checking sign up works", () => {
+  //   cy.visit("/signup");
+  //   cy.get("form").find("input[name='email']").type("test@test.com");
+  //   cy.get("form").find("input[name='password']").type("test");
+  //   cy.get("form").submit();
+  //   cy.url().should("include", "/");
+  //   cy.getCookie("sid").should("exist");
+  // });
 
   it("Checking if cookie has been set on login", () => {
     cy.visit("/login");
