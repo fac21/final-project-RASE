@@ -69,38 +69,6 @@ export function parseCookies(req) {
   return parse(req ? req.headers.cookie || "" : document.cookie);
 }
 
-// export const authenticated = (handler) => async (req, res) => {
-//   return verify(
-//     parseCookies(req).sid,
-//     process.env.GUID,
-//     async function (err, decoded) {
-//       if (!err && decoded) {
-//         const sessionData = await selectSession(decoded.sid);
-//         if (sessionData) {
-//           req.session = sessionData;
-//           return await handler(req, res);
-//         } else {
-//           res.redirect("/login");
-//         }
-//       }
-//       res.redirect("/login");
-//     }
-//   );
-// };
-
-// export async function pageAuthenticated(req) {
-//   return verify(
-//     parseCookies(req).sid,
-//     process.env.GUID,
-//     async function (err, decoded) {
-//       if (!err && decoded) {
-//         const sessionData = await selectSession(decoded.sid);
-//         if (sessionData) req.session = sessionData;
-//       }
-//     }
-//   );
-// }
-
 export const authenticated = (handler) => async (req, res) => {
   let decoded, err;
   try {
@@ -132,7 +100,10 @@ export async function pageAuthenticated(req) {
   }
   if (!err && decoded) {
     const sessionData = await selectSession(decoded.sid);
-    if (sessionData) req.session = sessionData;
+    if (sessionData) {
+      req.session = sessionData;
+      return sessionData;
+    }
   } else {
   }
 }
@@ -153,7 +124,7 @@ export async function logOutSession(req, res) {
       serialize("sid", String("deleted"), {
         path: "/",
         expires: new Date("Thu, 01 Jan 1950 00:00:00 GMT"),
-      }),
+      })
     );
   } else {
     res.redirect("/login");

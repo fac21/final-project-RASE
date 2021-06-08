@@ -1,24 +1,11 @@
 import Layout from "../components/Layout/Layout.jsx";
 import Link from "next/link";
-import { pageAuthenticated } from "../auth/auth";
 import {
   StyledSection,
   StyledForm,
 } from "../styles/StyledComponents/auth.styled";
 
 export async function getServerSideProps({ req, res }) {
-  await pageAuthenticated(req);
-  const sessionData = req.session;
-
-  if (sessionData) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-
   return {
     props: {},
   };
