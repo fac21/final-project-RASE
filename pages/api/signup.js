@@ -1,6 +1,5 @@
 import { createUser, saveUserSession, setCookie } from "../../auth/auth";
 
-
 export default async (req, res) => {
   const method = req.method;
 
@@ -14,8 +13,12 @@ export default async (req, res) => {
 
       try {
         const user = await createUser(username, email, password);
-        const jwt = await saveUserSession(user);
-        setCookie(res, "sid", jwt);
+
+        if (user) {
+          const jwt = await saveUserSession(user);
+          setCookie(res, "sid", jwt);
+        }
+
         res.redirect("/");
         break;
       } catch (error) {
