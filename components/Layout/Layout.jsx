@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import Nav from "../Nav/Nav.jsx";
+import { StyledSection } from "./layout.styled.jsx";
 
 export const siteTitle = "UK Travel Guide";
 
@@ -25,17 +26,19 @@ export default function Layout({ children, home, open, setOpen }) {
         />
         <meta name="og:title" content={siteTitle} />
       </Head>
-      <header>
-        <Nav open={open} setOpen={setOpen} />
-      </header>
-      <main>{children}</main>
-      {!home && (
-        <div className="homeLink">
-          <Link href="/">
-            <a>← Back to home</a>
-          </Link>
-        </div>
-      )}
+      <StyledSection>
+        <header>
+          <Nav open={open} setOpen={setOpen} />
+        </header>
+        <main>{children}</main>
+        {!home && (
+          <div className="homeLink">
+            <Link href="/">
+              <a>← Back to home</a>
+            </Link>
+          </div>
+        )}
+      </StyledSection>
     </div>
   );
 }

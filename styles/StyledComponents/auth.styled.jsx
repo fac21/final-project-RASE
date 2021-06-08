@@ -7,7 +7,9 @@ export const StyledSection = styled.section`
   margin-right: auto;
 
   h1 {
+    font-size: 2.3rem;
     margin-top: 3rem;
+    justify-content: flex-start;
   }
 
   p:last-child {

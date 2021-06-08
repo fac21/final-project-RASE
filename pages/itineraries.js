@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../components/Layout/Layout.jsx";
 import Itineraries from "../components/Itineraries/Itineraries.jsx";
+import SelectCountry from "../components/SelectCountry/SelectCountry.jsx";
 import { selectItineraries } from "../database/model";
 import { StyledSearchBar } from "../styles/StyledComponents/styles.styled.jsx";
 

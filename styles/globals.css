@@ -1,27 +1,22 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: Prata, Helvetica Neue, sans-serif;
+    padding: 0;
+    margin: 0;
+    font-family: Prata, Helvetica Neue, sans-serif;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 h1 {
-  display: flex;
-  justify-content: center;
-}
-
-.homeLink {
-  position: absolute;
-  bottom: 40px;
+    display: flex;
+    justify-content: center;
 }

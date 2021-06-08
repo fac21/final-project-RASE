@@ -6,24 +6,10 @@ import Link from "next/link";
 const Menu = ({ open }) => {
   return (
     <StyledMenu id={"menu"} open={open}>
-      <Link href="/countries/england">
-        <a>England</a>
-      </Link>
-      <Link href="/countries/wales">
-        <a>Wales</a>
-      </Link>
-      <Link href="/countries/scotland">
-        <a>Scotland</a>
-      </Link>
-      <Link href="/countries/northern_ireland">
-        <a>N. Ireland</a>
-      </Link>
-      <Link href="/signup">
-        <a>Sign Up</a>
-      </Link>
-      <Link href="/login">
-        <a>Log In</a>
-      </Link>
+      <a href="/signup">Sign Up</a>
+      <a href="/login">Log In</a>
+      <a href="/add">Add Itinerary</a>
+      <a href="/profile">My Profile</a>
     </StyledMenu>
   );
 };
