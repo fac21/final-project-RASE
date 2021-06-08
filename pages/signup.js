@@ -1,8 +1,10 @@
 import Layout from "../components/Layout/Layout.jsx";
 import Link from "next/link";
 import { pageAuthenticated } from "../auth/auth";
-import { StyledForm } from "../styles/styledcomponents/auth.styled";
-import { StyledSection } from "../styles/styledcomponents/auth.styled";
+import {
+  StyledForm,
+  StyledSection,
+} from "../styles/styledcomponents/auth.styled";
 import Image from "next/image";
 
 export async function getServerSideProps({ req, res }) {
