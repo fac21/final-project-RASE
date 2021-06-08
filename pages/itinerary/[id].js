@@ -21,7 +21,7 @@ const StyledDiv = styled.div`
 
 export default function Itinerary({ itineraryData, open, setOpen }) {
   const itineraryObject = JSON.parse(itineraryData);
-  
+  const description = itineraryObject.description;
   return (
     <Layout open={open} setOpen={setOpen}>
       <StyledSection>
@@ -37,7 +37,14 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
         <p>{itineraryObject.need_car ? "need car" : "don't need car"}</p>
         <p>£{itineraryObject.budget}</p>
         <hr></hr>
-        <p>{itineraryObject.description}</p>
+        <ul>
+          {Object.keys(description).map((key) => (
+            <li key={description[key]}>
+              <p>{key}:</p>
+              <p>{description[key].description}</p>
+            </li>
+          ))}
+        </ul>
       </StyledSection>
     </Layout>
   );
