@@ -21,6 +21,7 @@ const StyledDiv = styled.div`
 
 export default function Itinerary({ itineraryData, open, setOpen }) {
   const itineraryObject = JSON.parse(itineraryData);
+  
   return (
     <Layout open={open} setOpen={setOpen}>
       <StyledSection>

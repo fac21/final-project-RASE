@@ -5,6 +5,7 @@ import {
   StyledForm,
 } from "../styles/styledcomponents/auth.styled";
 import Link from "next/link";
+import Image from "next/image";
 
 export async function getServerSideProps({ req, res }) {
   await pageAuthenticated(req);
@@ -26,7 +27,7 @@ export async function getServerSideProps({ req, res }) {
 
 export default function Login({ open, setOpen }) {
   return (
-    <Layout open={open} setOpen={setOpen}>
+    <Layout open={open} setOpen={setOpen} login>
       <StyledSection>
         <h1>Welcome Back!</h1>
         <p>Log in to continue</p>
@@ -39,11 +40,12 @@ export default function Login({ open, setOpen }) {
             Login
           </button>
         </StyledForm>
-        <Link href="/login">
+        <Link href="/signup">
           <p>
             Don't have an account? <a>Sign up</a>
           </p>
         </Link>
       </StyledSection>
+    </Layout>
   );
 }
