@@ -25,8 +25,8 @@ export default function Itineraries({ data }) {
           </h2>
           <p>{itinerary.duration} days</p>
           <div className="itinerary_type">
-            <p>{itinerary.need_car ? "Need car" : "Don't need car"}</p>
             <p>£{itinerary.budget}</p>
+            <p>{itinerary.need_car ? "Need car" : "Don't need car"}</p>
           </div>
         </div>
       </StyledItineraries>

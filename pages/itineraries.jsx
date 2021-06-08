@@ -9,12 +9,12 @@ export default function Itinerary({ data, open, setOpen }) {
   return (
     <Layout open={open} setOpen={setOpen}>
       <h1>Itineraries</h1>
+      <SelectCountry />
       <form>
         <StyledSearchBar>
           <input type="text" placeholder="Search itineraries"></input>
         </StyledSearchBar>
       </form>
-
       <Itineraries data={data} />
     </Layout>
   );

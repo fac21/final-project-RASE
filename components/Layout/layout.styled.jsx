@@ -9,6 +9,10 @@ export const StyledSection = styled.section`
     cursor: pointer;
   }
 
+  a {
+    padding: 2rem;
+  }
+
   .homeLink {
     display: block;
     text-align: center;

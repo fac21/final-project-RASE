@@ -3,6 +3,7 @@ import { pageAuthenticated } from "../auth/auth";
 import {
   StyledSection,
   StyledForm,
+
 } from "../styles/StyledComponents/auth.styled";
 import Link from "next/link";
 
@@ -26,8 +27,9 @@ export async function getServerSideProps({ req, res }) {
 
 export default function Login({ open, setOpen }) {
   return (
-    <Layout open={open} setOpen={setOpen}>
+    <Layout login open={open} setOpen={setOpen}>
       <StyledSection>
+          <img className="blob" src="/blob.svg"/>
         <h1>Welcome Back!</h1>
         <p>Log in to continue</p>
         <StyledForm action="/api/login" method="post">

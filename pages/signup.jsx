@@ -26,8 +26,9 @@ export async function getServerSideProps({ req, res }) {
 
 export default function SignUp({ open, setOpen }) {
   return (
-    <Layout open={open} setOpen={setOpen}>
+    <Layout login open={open} setOpen={setOpen}>
       <StyledSection>
+      <img className="blob" src="/blob.svg"/>
         <h1>Create your account</h1>
         <StyledForm action="/api/signup" method="POST">
           <label htmlFor="username">
@@ -46,10 +47,10 @@ export default function SignUp({ open, setOpen }) {
             Password
             <span aria-hidden="true">*</span>
           </label>
-          <div id="passwordRequirements">
+          <p class="passwordReqs" id="passwordRequirements">
             Passwords must contain at least one letter and one number, and
             contain at least 8 characters.
-          </div>
+          </p>
           <input
             id="password"
             name="password"
