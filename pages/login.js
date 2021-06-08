@@ -1,9 +1,7 @@
 import Layout from "../components/Layout/Layout.jsx";
 import { pageAuthenticated } from "../auth/auth";
-import {
-  StyledSection,
-  StyledForm,
-} from "../styles/styledcomponents/auth.styled";
+import { StyledForm } from "../styles/styledcomponents/auth.styled";
+import { StyledSection } from "../styles/styledcomponents/auth.styled";
 import Link from "next/link";
 import Image from "next/image";
 

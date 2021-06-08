@@ -37,8 +37,13 @@ export async function createUser(username, email, password) {
 export async function verifyUser(email, password) {
   try {
     const user = await selectUser(email);
+    if (!user) {
+      console.log("Error1");
+      throw new Error("Password mismatch");
+    }
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
+      console.log("Error2");
       throw new Error("Password mismatch");
     } else {
       delete user.password;
@@ -153,7 +158,7 @@ export async function logOutSession(req, res) {
       serialize("sid", String("deleted"), {
         path: "/",
         expires: new Date("Thu, 01 Jan 1950 00:00:00 GMT"),
-      }),
+      })
     );
   } else {
     res.redirect("/login");
