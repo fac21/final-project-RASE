@@ -10,9 +10,10 @@ export default async (req, res) => {
     case "POST": {
       const { email, password } = req.body;
       const user = await verifyUser(email, password);
-      const jwt = await saveUserSession(user);
-      setCookie(res, "sid", jwt);
-
+      if (user) {
+        const jwt = await saveUserSession(user);
+        setCookie(res, "sid", jwt);
+      }
       res.redirect("/");
       break;
     }

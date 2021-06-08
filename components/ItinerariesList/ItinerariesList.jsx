@@ -17,8 +17,8 @@ export default function ItinerariesList({ data }) {
                     <Image
                       src={itinerary.img}
                       alt={itinerary.name}
-                      height="200"
-                      width="200"
+                      width={200}
+                      height={200}
                     />
                   </li>
                   <p>{itinerary.name}</p>
