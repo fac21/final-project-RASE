@@ -4,7 +4,7 @@ import { pageAuthenticated } from "../auth/auth";
 import {
   StyledSection,
   StyledForm,
-} from "../styles/styledcomponents/auth.styled";
+} from "../styles/StyledComponents/auth.styled";
 
 export async function getServerSideProps({ req, res }) {
   await pageAuthenticated(req);

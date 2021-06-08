@@ -3,7 +3,7 @@ import { pageAuthenticated } from "../auth/auth";
 import {
   StyledSection,
   StyledForm,
-} from "../styles/styledcomponents/auth.styled";
+} from "../styles/StyledComponents/auth.styled";
 import Link from "next/link";
 
 export async function getServerSideProps({ req, res }) {
@@ -45,5 +45,6 @@ export default function Login({ open, setOpen }) {
           </p>
         </Link>
       </StyledSection>
+    </Layout>
   );
 }
