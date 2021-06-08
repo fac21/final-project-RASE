@@ -11,6 +11,10 @@ const StyledSection = styled.section`
   h1 {
     text-align: center;
   }
+  li {
+    margin: 1rem;
+    list-style-type: none;
+  }
 `;
 
 const StyledDiv = styled.div`
@@ -19,26 +23,26 @@ const StyledDiv = styled.div`
   place-content: center;
 `;
 
+const StyledP = styled.p`
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+  gap: 1rem;
+  font-weight: 700;
+`;
+
+const StyledUl = styled.ul`
+  display: flex;
+  justify-content: center;
+  .description {
+    padding: 1rem;
+    font-style: italic;
+  }
+`;
+
 export default function Itinerary({ itineraryData, open, setOpen }) {
   const itineraryObject = JSON.parse(itineraryData);
   const description = itineraryObject.description;
-  //console.log(itineraryObject.description);
-
-  //   let value;
-  //   const dailyDescription = () => {
-  //     Object.keys(description).forEach(function (key) {
-  //       value = description[key].description;
-  //       console.log(value);
-  //       return <li>{value}</li>;
-  //     });
-  //   };
-
-  //console.log(Object.values(description));
-  // const dailyDescription = () => {
-  //   for (let day in description) {
-  //     <li>{day.description}</li>;
-  //   }
-  // };
   return (
     <Layout open={open} setOpen={setOpen}>
       <StyledSection>
@@ -51,18 +55,21 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
             height={400}
           ></Image>
         </StyledDiv>
-        <p>{itineraryObject.need_car ? "need car" : "don't need car"}</p>
-        <p>£{itineraryObject.budget}</p>
+        <StyledP>
+          <p>£{itineraryObject.budget}</p>
+          <p>{itineraryObject.need_car ? "Need car" : "Don't need car"}</p>
+        </StyledP>
         <hr></hr>
-        <ul>
-          {Object.keys(description).map((key) => (
-            <li key={description[key]}>
-              <p>{key}:</p>
-              <p>{description[key].description}</p>
-            </li>
-          ))}
-        </ul>
-        {/* <p>{itineraryObject.description["Day One"].description}</p> */}
+        <StyledUl>
+          <ul>
+            {Object.keys(description).map((key) => (
+              <li key={description[key]}>
+                <p>{key}:</p>
+                <p class="description">{description[key].description}</p>
+              </li>
+            ))}
+          </ul>
+        </StyledUl>
       </StyledSection>
     </Layout>
   );
