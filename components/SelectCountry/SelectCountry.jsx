@@ -4,10 +4,10 @@ import styled from "styled-components";
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   text-decoration: underline;
   padding: 1rem;
-  max-width: 60rem;
+
   margin-left: auto;
   margin-right: auto;
 `;

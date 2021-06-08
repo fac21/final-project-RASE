@@ -7,7 +7,7 @@ export const StyledSection = styled.section`
   margin-right: auto;
 
   h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-top: 3rem;
     justify-content: flex-start;
   }
@@ -19,14 +19,6 @@ export const StyledSection = styled.section`
 
   .passwordReqs {
     font-size: 0.8rem;
-  }
-
-  img{
-  position: absolute;
-  top: -2rem;
-  right: -2rem;
-  width: 10rem;
-  height: 10rem;
   }
 `;
 

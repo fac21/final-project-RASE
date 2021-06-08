@@ -1,22 +1,7 @@
 import Link from "next/link";
 import Burger from "../Burger/burger";
 import Menu from "../Menu/menu.jsx";
-import styled from "styled-components";
-
-const StyledMenu = styled.div`
-  position: relative;
-  background: #fffdf9;
-  height: fit-content;
-`;
-const StyledLink = styled.h1`
-  font-size: 1rem;
-  max-width: 40rem;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  text-decoration: underline;
-  padding: 1rem;
-`;
+import {StyledMenu, StyledLink} from "./Nav.styled.jsx"
 
 export default function Nav({ open, setOpen }) {
   return (

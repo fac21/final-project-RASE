@@ -47,7 +47,7 @@ export default function SignUp({ open, setOpen }) {
             Password
             <span aria-hidden="true">*</span>
           </label>
-          <p class="passwordReqs" id="passwordRequirements">
+          <p className="passwordReqs" id="passwordRequirements">
             Passwords must contain at least one letter and one number, and
             contain at least 8 characters.
           </p>

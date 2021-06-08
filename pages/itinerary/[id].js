@@ -74,7 +74,7 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
             {Object.keys(description).map((key) => (
               <li key={description[key]}>
                 <p>{key}:</p>
-                <p class="description">{description[key].description}</p>
+                <p className="description">{description[key].description}</p>
               </li>
             ))}
           </ul>
