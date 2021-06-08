@@ -13,7 +13,7 @@ export default async (req, res) => {
 
       if (user) {
         const jwt = await saveUserSession(user);
-        setCookie(res, "sid", jwt);../../cypress/screenshots/tests.js/check burger menu -- can go to home page (failed).png
+        setCookie(res, "sid", jwt);
       }
 
       res.redirect("/");
