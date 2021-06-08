@@ -15,20 +15,6 @@ export const StyledSection = styled.section`
     text-align: center;
   }
 
-  div:first-child {
-    position: absolute;
-  }
-
-  img {
-    float: right;
-    position: relative;
-    width: 150px;
-    height: 150px;
-    top: -60px;
-    right: -450px;
-    transform: rotate(-10.77deg);
-  }
-
   .passwordReqs {
     font-size: 0.8rem;
   }
