@@ -1,40 +1,37 @@
 import React from "react";
-import Itinerary from "../../pages/itineraries";
+import Image from "next/image";
+import Link from "next/link";
+import { StyledItineraries } from "./Itineraries.styled.jsx";
 
 export default function Itineraries({ data }) {
-  console.log("test", data);
-
   const itineraries = data.map((itinerary) => {
     return (
-      <section>
-        <h1>
-          <a href="/">{itinerary.name}</a>
-        </h1>
-        <p>{itinerary.duration} days</p>
-        <p>{itinerary.need_car ? "need car" : "don't need car"}</p>
-        <p>£{itinerary.budget}</p>
-      </section>
+      <StyledItineraries key={itinerary.id}>
+        <Link href={`/itinerary/${itinerary.id}`}>
+          <a>
+            <Image
+              src={itinerary.img}
+              alt={itinerary.name + "photo"}
+              width={500}
+              height={300}
+            />
+          </a>
+        </Link>
+        <div className="itinerary_info">
+          <h2>
+            <Link href={`/itinerary/${itinerary.id}`}>
+              <a>{itinerary.name}</a>
+            </Link>
+          </h2>
+          <p>{itinerary.duration} days</p>
+          <div className="itinerary_type">
+            <p>{itinerary.need_car ? "need car" : "don't need car"}</p>
+            <p>£{itinerary.budget}</p>
+          </div>
+        </div>
+      </StyledItineraries>
     );
   });
 
   return <>{itineraries}</>;
-
-  // const donutArray = data.map((itinerary) => {
-  //   return (
-  //     <h1>Test</h1>
-  //     //   <section className="eachDonut" key={donut.id}>
-  //     //     <h1 className="donut__name">{donut.name}</h1>
-  //     //     <img
-  //     //       className="donut__image"
-  //     //       src={donut.image}
-  //     //       alt={"picture of " + donut.name + " donut"}
-  //     //     />
-  //     //     <p className="donut__description">{donut.description}</p>
-  //     //     <p className="donut__price">£{donut.price.toFixed(2)}</p>
-  //     //     <button className={donut.name} onClick={addDonut}>
-  //     //       Gimme a Donut
-  //     //     </button>
-  //     // </section>
-  //   );
-  // }
 }

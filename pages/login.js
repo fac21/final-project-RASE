@@ -24,9 +24,9 @@ export async function getServerSideProps({ req, res }) {
   };
 }
 
-export default function Login() {
+export default function Login({ open, setOpen }) {
   return (
-    <Layout>
+    <Layout open={open} setOpen={setOpen}>
       <StyledSection>
         <h1>Welcome Back!</h1>
         <p>Log in to continue</p>
@@ -45,6 +45,5 @@ export default function Login() {
           </p>
         </Link>
       </StyledSection>
-    </Layout>
   );
 }

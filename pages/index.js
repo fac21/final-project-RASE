@@ -1,17 +1,16 @@
 import React from "react";
-import db from "../database/connection";
 import Layout from "../components/Layout/Layout.jsx";
-import Link from "next/link";
-import SelectCountry from "../components/HomePage/SelectCountry.jsx";
+import SelectCountry from "../components/SelectCountry/SelectCountry.jsx";
 import Image from "next/image";
-import ItinerariesList from "../components/HomePage/ItinerariesList.jsx";
+import ItinerariesList from "../components/ItinerariesList/ItinerariesList.jsx";
 import styled from "styled-components";
+import { selectItineraries } from "../database/model";
 
 const StyledSection = styled.section`
   max-width: 60rem;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2rem;
+  margin-tlop: 2rem;
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
@@ -62,7 +61,7 @@ export default function Home({ data, open, setOpen }) {
         </StyledContainer>
       </StyledSection>
 
-      <ItinerariesList />
+      <ItinerariesList data={data} />
       <StyledSection>
         <hr></hr>
         <p> FAC Student Project Spring 2021 </p>
@@ -72,9 +71,7 @@ export default function Home({ data, open, setOpen }) {
 }
 
 export async function getServerSideProps() {
-  const GET_USER = "SELECT * FROM user_table;";
-  const data_long = await db.query(GET_USER);
-  const data = data_long.rows;
+  const data = await selectItineraries();
   return {
     props: {
       data,
