@@ -3,7 +3,7 @@ import Layout from "../../components/Layout/Layout.jsx";
 import { selectItinerariesByCountry } from "../../database/model";
 import { StyledSearchBar } from "../../styles/StyledComponents/styles.styled.jsx";
 
-export default function Itinerary({ data, country, open, setOpen }) {
+export default function Country({ data, country, open, setOpen }) {
   console.log(data);
   return (
     <Layout open={open} setOpen={setOpen}>
