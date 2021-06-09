@@ -5,6 +5,7 @@ import Image from "next/image";
 import ItinerariesList from "../components/ItinerariesList/ItinerariesList.jsx";
 import styled from "styled-components";
 import { selectItineraries } from "../database/model";
+import dynamic from "next/dynamic";
 
 const StyledSection = styled.section`
   max-width: 60rem;
@@ -38,8 +39,16 @@ const Box = styled.div`
 `;
 
 export default function Home({ data, open, setOpen }) {
+  const MapWithNoSSR = dynamic(() => import("../components/Map1/mapone.jsx"), {
+    ssr: false
+  });
+
+
   return (
     <Layout open={open} setOpen={setOpen} home>
+      <div id="mapid" className="mapClass">
+        <MapWithNoSSR />
+      </div>
       <SelectCountry />
       <StyledSection>
         <StyledContainer>

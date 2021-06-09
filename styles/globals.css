@@ -20,3 +20,15 @@ h1 {
   display: flex;
   justify-content: center;
 }
+
+#mapid,
+.mapClass {
+  background: pink;
+  height: 500px;
+  width: 500px;
+}
+
+/* .leaflet-container *{
+  height: 200px;
+  width: 00px;
+} */
