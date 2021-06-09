@@ -13,8 +13,8 @@ export const StyledSection = styled.section`
   .blob {
     position: absolute;
     top: -3rem;
-    right: -3rem;
-    width: 8rem;
-    height: 8rem;
+    right: -2rem;
+    width: 10rem;
+    height: 9rem;
   }
 `;
