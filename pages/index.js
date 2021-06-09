@@ -4,7 +4,11 @@ import SelectCountry from "../components/SelectCountry/SelectCountry.jsx";
 import Image from "next/image";
 import ItinerariesList from "../components/ItinerariesList/ItinerariesList.jsx";
 import { selectItineraries } from "../database/model";
-import { StyledSection, StyledContainer, Box} from "../styles/styledcomponents/index.styled.jsx"
+import {
+  StyledSection,
+  StyledContainer,
+  Box,
+} from "../styles/StyledComponents/index.styled.jsx";
 
 export default function Home({ data, open, setOpen }) {
   return (
