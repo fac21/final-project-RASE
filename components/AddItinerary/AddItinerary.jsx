@@ -78,6 +78,11 @@ export default function AddItinerary() {
           onClick={() => setDayCount(dayCount + 1)}
         />
       </div>
+      <label htmlFor="postcode">
+        Please enter the postcode of your first location so we can add a pin to
+        the map!
+      </label>
+      <input id="postcode" name="postcode" type="text"></input>
 
       <button type="submit"> Add my itinerary! </button>
     </form>
