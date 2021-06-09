@@ -32,6 +32,5 @@ export default function Itineraries({ data }) {
       </StyledItineraries>
     );
   });
-
   return <>{itineraries}</>;
 }
