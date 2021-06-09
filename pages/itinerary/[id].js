@@ -1,4 +1,5 @@
 import Layout from "../../components/Layout/Layout.jsx";
+import Head from "next/head";
 import Image from "next/image";
 import { getAllItineraryIds, getItineraryData } from "../../database/model";
 import styled from "styled-components";
@@ -23,7 +24,7 @@ const StyledDiv = styled.div`
   place-content: center;
 `;
 
-const StyledP = styled.p`
+const StyledArticle = styled.article`
   display: flex;
   justify-content: center;
   margin: 1rem;
@@ -45,6 +46,9 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
   const description = itineraryObject.description;
   return (
     <Layout open={open} setOpen={setOpen}>
+      <Head>
+        <title>{itineraryObject.name}</title>
+      </Head>
       <StyledSection>
         <h1>{itineraryObject.name}</h1>
         <StyledDiv>
@@ -55,19 +59,28 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
             height={400}
           ></Image>
         </StyledDiv>
-        <StyledP>
+        <StyledArticle>
           <p>£{itineraryObject.budget}</p>
           <p>{itineraryObject.need_car ? "Need car" : "Don't need car"}</p>
-        </StyledP>
+        </StyledArticle>
         <hr></hr>
         <StyledUl>
           <ul>
-            {Object.keys(description).map((key) => (
-              <li key={description[key]}>
-                <p>{key}:</p>
-                <p class="description">{description[key].description}</p>
-              </li>
-            ))}
+            {Object.keys(description).map((key) => {
+              return (
+                <li key={description[key].description}>
+                  <p>{key}:</p>
+                  <p>
+                    <span className="location">
+                      {description[key].location}
+                    </span>
+                    <span className="description">
+                      {description[key].description}
+                    </span>
+                  </p>
+                </li>
+              );
+            })}
           </ul>
         </StyledUl>
       </StyledSection>

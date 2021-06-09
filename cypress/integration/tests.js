@@ -1,4 +1,6 @@
-beforeEach(() => {});
+beforeEach(() => {
+  // cy.task("resetDb");
+});
 
 describe("check homepage link ", () => {
   it("can go to home page", () => {
@@ -20,7 +22,7 @@ describe("check burger menu", () => {
 
   it("navigate one of the england page", () => {
     cy.get("#burger").click();
-    cy.get("#menu").get("a[href*='england']").click({ multiple: true });
+    cy.get("#menu").find("a[href='/countries/england']").click({ multiple: true });
     cy.url().should("include", "/england");
   });
 
@@ -78,14 +80,22 @@ describe("Check individual itinerary pages", () => {
 });
 
 describe("Checking cookies", () => {
-  // it("Checking sign up works", () => {
-  //   cy.visit("/signup");
-  //   cy.get("form").find("input[name='email']").type("test@test.com");
-  //   cy.get("form").find("input[name='password']").type("test");
-  //   cy.get("form").submit();
-  //   cy.url().should("include", "/");
-  //   cy.getCookie("sid").should("exist");
-  // });
+  it("Checking sign up works", () => {
+    cy.visit("/signup");
+    cy.get("form").find("input[name='username']").type("test");
+    cy.get("form").find("input[name='email']").type("test@test.com");
+    cy.get("form").find("input[name='password']").type("test");
+    cy.get("form").submit();
+    cy.url().should("include", "/");
+    cy.getCookie("sid").should("exist");
+  });
+
+  it("Checking if cookie has been deleted on logout", () => {
+    cy.visit("/logout");
+    cy.get("form").get("#logout").click();
+    cy.url().should("include", "/");
+    cy.getCookie("sid").should("not.exist");
+  });
 
   it("Checking if cookie has been set on login", () => {
     cy.visit("/login");

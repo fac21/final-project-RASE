@@ -13,8 +13,11 @@ export default async (req, res) => {
       if (user) {
         const jwt = await saveUserSession(user);
         setCookie(res, "sid", jwt);
+        res.redirect("/");
+      } else {
+        res.redirect("/login");
       }
-      res.redirect("/");
+
       break;
     }
     default: {

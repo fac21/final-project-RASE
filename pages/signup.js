@@ -1,24 +1,12 @@
 import Layout from "../components/Layout/Layout.jsx";
+import Head from "next/head";
 import Link from "next/link";
-import { pageAuthenticated } from "../auth/auth";
 import {
   StyledSection,
   StyledForm,
 } from "../styles/StyledComponents/auth.styled";
 
 export async function getServerSideProps({ req, res }) {
-  await pageAuthenticated(req);
-  const sessionData = req.session;
-
-  if (sessionData) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-
   return {
     props: {},
   };
@@ -27,6 +15,9 @@ export async function getServerSideProps({ req, res }) {
 export default function SignUp({ open, setOpen }) {
   return (
     <Layout open={open} setOpen={setOpen}>
+      <Head>
+        <title>Sign up</title>
+      </Head>
       <StyledSection>
         <h1>Create your account</h1>
         <StyledForm action="/api/signup" method="POST">
@@ -62,11 +53,12 @@ export default function SignUp({ open, setOpen }) {
           <button>Create account</button>
         </StyledForm>
 
-        <Link href="/login">
-          <p>
-            Already have an account? <a>Log in</a>
-          </p>
-        </Link>
+        <p>
+          Already have an account?{" "}
+          <Link href="/login">
+            <a>Log in</a>
+          </Link>
+        </p>
       </StyledSection>
     </Layout>
   );
