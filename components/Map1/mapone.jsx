@@ -10,8 +10,9 @@ function MyMap() {
   const latone = 51.53734;
   const longtwo = -0.058855;
 
-
   const access_token = process.env.MY_ACCESS_TOKEN;
+
+  console.log(access_token)
   return (
     <MapContainer
       center={[lat, long]}

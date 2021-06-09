@@ -38,7 +38,7 @@ const Box = styled.div`
   place-content: center;
 `;
 
-export default function Home({ data, open, setOpen }) {
+export default function Home({ data, open, setOpen, access_token }) {
   const MapWithNoSSR = dynamic(() => import("../components/Map1/mapone.jsx"), {
     ssr: false
   });
@@ -47,7 +47,7 @@ export default function Home({ data, open, setOpen }) {
   return (
     <Layout open={open} setOpen={setOpen} home>
       <div id="mapid" className="mapClass">
-        <MapWithNoSSR />
+        <MapWithNoSSR/>
       </div>
       <SelectCountry />
       <StyledSection>
@@ -83,7 +83,7 @@ export async function getServerSideProps() {
   const data = await selectItineraries();
   return {
     props: {
-      data,
+      data
     },
   };
 }
