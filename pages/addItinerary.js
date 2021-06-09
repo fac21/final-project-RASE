@@ -3,7 +3,14 @@ import Head from "next/head";
 import AddItinerary from "../components/AddItinerary/AddItinerary";
 import { pageAuthenticated } from "../auth/auth";
 
-export default function addItinerary({ data, open, setOpen }) {
+export default function addItinerary({
+  data,
+  open,
+  setOpen,
+  longitude,
+  latitude,
+  region,
+}) {
   return (
     <Layout open={open} setOpen={setOpen}>
       <Head>
