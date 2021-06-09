@@ -19,4 +19,9 @@ a {
 h1 {
     display: flex;
     justify-content: center;
+    margin-top: 1rem;
+}
+
+.homeLink{
+    margin-top: 3rem;
 }

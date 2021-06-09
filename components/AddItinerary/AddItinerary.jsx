@@ -1,5 +1,71 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import styled from "styled-components";
+
+const StyledForm = styled.form`
+display: flex;
+flex-direction: column;
+max-width: 40rem;
+margin-left: auto;
+margin-right: auto;
+margin-top: 2rem;
+padding: 2rem;
+  box-shadow: 0px 5px 15px rgb(0 0 0 / 5%);
+>* {
+  margin-top: 0.5rem;
+}
+
+.car{
+  max-width: 30rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.yes > *{
+  margin: 0.2rem;
+}
+
+.no > *{
+  margin: 0.2rem;
+}
+
+button{
+  margin-top: 2rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background: #bfc8ad;
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    width: fit-content;
+    border: 1px solid #bfc8ad;
+    font-family: Prata;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.32));
+}
+
+.days > *{
+  margin-top: 0.5rem;
+}
+
+.addDay{
+  padding: 0.2rem;
+  font-family: Prata;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.32));
+  float: right;
+}
+
+.dayItin > *{
+  margin: 0.2rem;
+
+}
+
+input{
+  line-height: 1.3rem;
+}
+
+select{
+  line-height: 1.3rem;
+}
+`
 
 export default function AddItinerary() {
   const [dayCount, setDayCount] = useState(1);
@@ -17,7 +83,7 @@ export default function AddItinerary() {
   }, [dayCount]);
 
   return (
-    <form action="/api/addItinerary" method="POST">
+    <StyledForm action="/api/addItinerary" method="POST">
       <label htmlFor="name">
         Please enter a title for your trip
         <span aria-hidden="true">*</span>
@@ -60,27 +126,34 @@ export default function AddItinerary() {
         required
       />
 
-      <p>
-        Did you need a car for this trip?
+      <div className="car">
+        <p>
+          Did you need a car for this trip?
         <span aria-hidden="true">*</span>
-      </p>
-      <label htmlFor="carYes">Yes</label>
-      <input id="carYes" name="need_car" type="radio" value="Yes" required />
-      <label htmlFor="carNo">No</label>
-      <input id="carNo" name="need_car" type="radio" value="No" />
+        </p>
+        <div className="yes">
+          <label htmlFor="carYes">Yes</label>
+          <input id="carYes" name="need_car" type="radio" value="Yes" required />
+        </div>
+        <div className="no">
+          <label htmlFor="carNo">No</label>
+          <input id="carNo" name="need_car" type="radio" value="No" />
+        </div>
+      </div>
 
-      <div id="days">
+      <div className="days" id="days">
         <p>Details</p>
         {daysArray}
         <input
           type="button"
+          className="addDay"
           value="Add Day"
           onClick={() => setDayCount(dayCount + 1)}
         />
       </div>
 
       <button type="submit"> Add my itinerary! </button>
-    </form>
+    </StyledForm>
   );
 }
 
@@ -89,7 +162,7 @@ function Day({ dayNumber }) {
   const description = `Description_${dayNumber}`;
 
   return (
-    <div>
+    <div className="dayItin">
       <label htmlFor={day}>{day}</label>
       <input id={day} name={day} type="text" placeholder="location" required />
       <input
