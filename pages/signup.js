@@ -1,24 +1,12 @@
 import Layout from "../components/Layout/Layout.jsx";
+import Head from "next/head";
 import Link from "next/link";
-import { pageAuthenticated } from "../auth/auth";
 import {
   StyledSection,
   StyledForm,
 } from "../styles/StyledComponents/auth.styled";
 
 export async function getServerSideProps({ req, res }) {
-  await pageAuthenticated(req);
-  const sessionData = req.session;
-
-  if (sessionData) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-
   return {
     props: {},
   };
@@ -26,8 +14,12 @@ export async function getServerSideProps({ req, res }) {
 
 export default function SignUp({ open, setOpen }) {
   return (
-    <Layout open={open} setOpen={setOpen}>
+    <Layout login open={open} setOpen={setOpen}>
+      <Head>
+        <title>Sign up</title>
+      </Head>
       <StyledSection>
+        <img className="blob" src="/blob.svg" />
         <h1>Create your account</h1>
         <StyledForm action="/api/signup" method="POST">
           <label htmlFor="username">
@@ -46,10 +38,10 @@ export default function SignUp({ open, setOpen }) {
             Password
             <span aria-hidden="true">*</span>
           </label>
-          <div id="passwordRequirements">
+          <p className="passwordReqs" id="passwordRequirements">
             Passwords must contain at least one letter and one number, and
             contain at least 8 characters.
-          </div>
+          </p>
           <input
             id="password"
             name="password"
@@ -62,11 +54,12 @@ export default function SignUp({ open, setOpen }) {
           <button>Create account</button>
         </StyledForm>
 
-        <Link href="/login">
-          <p>
-            Already have an account? <a>Log in</a>
-          </p>
-        </Link>
+        <p>
+          Already have an account?{" "}
+          <Link href="/login">
+            <a>Log in</a>
+          </Link>
+        </p>
       </StyledSection>
     </Layout>
   );

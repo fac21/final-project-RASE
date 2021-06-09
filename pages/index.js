@@ -1,53 +1,29 @@
 import React from "react";
+import Head from "next/head";
 import Layout from "../components/Layout/Layout.jsx";
 import SelectCountry from "../components/SelectCountry/SelectCountry.jsx";
 import Image from "next/image";
 import ItinerariesList from "../components/ItinerariesList/ItinerariesList.jsx";
-import styled from "styled-components";
 import { selectItineraries } from "../database/model";
+import {
+  StyledSection,
+  StyledContainer,
+  Box,
+} from "../styles/StyledComponents/index.styled.jsx";
+
 import dynamic from "next/dynamic";
-
-const StyledSection = styled.section`
-  max-width: 60rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-tlop: 2rem;
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-
-  p {
-    margin-top: 3rem;
-    text-align: center;
-  }
-`;
-
-const StyledContainer = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 40rem;
-  padding: 1.5rem;
-`;
-
-const Box = styled.div`
-  height: 14rem;
-  background: #dbcfb0;
-  text-align: center;
-  padding: 2rem;
-  display: grid;
-  place-content: center;
-`;
 
 export default function Home({ data, open, setOpen, access_token }) {
   const MapWithNoSSR = dynamic(() => import("../components/Map1/mapone.jsx"), {
     ssr: false
   });
-
-
   return (
     <Layout open={open} setOpen={setOpen} home>
+      <Head>
+        <title>Home</title>
+      </Head>
       <div id="mapid" className="mapClass">
-        <MapWithNoSSR/>
+        <MapWithNoSSR />
       </div>
       <SelectCountry />
       <StyledSection>
@@ -70,7 +46,7 @@ export default function Home({ data, open, setOpen, access_token }) {
         </StyledContainer>
       </StyledSection>
 
-      <ItinerariesList data={data} />
+      <ItinerariesList data={data.splice(0, 6)} />
       <StyledSection>
         <hr></hr>
         <p> FAC Student Project Spring 2021 </p>

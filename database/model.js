@@ -1,17 +1,6 @@
 import db from "./connection";
 
-export function getAllItineraryIds() {
-  const SELECT_ITINERARIES = `
-      SELECT * FROM itineraries_table
-    `;
-  return db.query(SELECT_ITINERARIES).then((result) => result.rows);
-}
-
-export function getItineraryData(id) {
-  const SELECT_ITINERARIES = `
-  SELECT * FROM itineraries_table WHERE id=$1`;
-  return db.query(SELECT_ITINERARIES, [id]).then((result) => result.rows[0]);
-}
+// Itineraries
 
 // User
 export function selectUser(email) {
@@ -42,6 +31,44 @@ export function selectItinerariesByCountry(country) {
   const SELECT_ITINERARARIES = ` SELECT * FROM itineraries_table where country=$1`;
   return db
     .query(SELECT_ITINERARARIES, [country])
+    .then((result) => result.rows);
+}
+
+export function getAllItineraryIds() {
+  const SELECT_ITINERARIES = `
+      SELECT * FROM itineraries_table
+    `;
+  return db.query(SELECT_ITINERARIES).then((result) => result.rows);
+}
+
+export function getItineraryData(id) {
+  const SELECT_ITINERARIES = `
+  SELECT * FROM itineraries_table WHERE id=$1`;
+  return db.query(SELECT_ITINERARIES, [id]).then((result) => result.rows[0]);
+}
+
+export function insertItineraries({
+  user_id,
+  name,
+  img,
+  country,
+  need_car,
+  budget,
+  duration,
+  description,
+}) {
+  const INSERT_ITINERARY = `INSERT INTO itineraries_table (user_id, name, img, country, need_car, budget, duration, description, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, (SELECT CURRENT_TIMESTAMP))`;
+  return db
+    .query(INSERT_ITINERARY, [
+      user_id,
+      name,
+      img,
+      country,
+      need_car,
+      budget,
+      duration,
+      description,
+    ])
     .then((result) => result.rows);
 }
 

@@ -1,10 +1,11 @@
 import Head from "next/head";
 import Link from "next/link";
 import Nav from "../Nav/Nav.jsx";
+import { StyledSection } from "./layout.styled.jsx";
 
 export const siteTitle = "UK Travel Guide";
 
-export default function Layout({ children, home, open, setOpen }) {
+export default function Layout({ children, home, open, setOpen, login }) {
   return (
     <div>
       <Head>
@@ -23,19 +24,21 @@ export default function Layout({ children, home, open, setOpen }) {
             siteTitle
           )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
         />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
         <meta name="og:title" content={siteTitle} />
       </Head>
-      <header>
-        <Nav open={open} setOpen={setOpen} />
-      </header>
-      <main>{children}</main>
-      {!home && (
-        <div>
-          <Link href="/">
-            <a>← Back to home</a>
-          </Link>
-        </div>
-      )}
+      <StyledSection>
+        <header>{!login && <Nav open={open} setOpen={setOpen} />}</header>
+        <main>{children}</main>
+        {!home && (
+          <div className="homeLink">
+            <Link href="/">
+              <a>← Back to home</a>
+            </Link>
+          </div>
+        )}
+      </StyledSection>
     </div>
   );
 }
