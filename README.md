@@ -18,6 +18,12 @@ This project has been designed and created as part of [Founders and Coders](http
 
 ---
 
+[Design](#Design)
+[Tech Stack](#Tech-Stack)
+[Steps to run it localy](#Steps-to-run-it-localy)
+
+---
+
 ## Design
 
 ### Itineraries
@@ -34,24 +40,25 @@ This project has been designed and created as part of [Founders and Coders](http
 
 ---
 
+
 ## Tech Stack
 
-<img src="https://i.imgur.com/fTbBWKd.png" width="50px">
-<img src="https://i.imgur.com/zVr4l4N.png" width="50px">
-<img src="https://i.imgur.com/Bg1Gkhw.png" width="60px">
-<img src="https://i.imgur.com/ftqh6Vm.png" width="50px">
-<img src="https://i.imgur.com/11NVNjn.png" width="50px">
+<div style="display: flex; justify-content: center; align-items: center; gap: 4rem;">
+    <img src="https://i.imgur.com/fTbBWKd.png" width="50px">
+    <img src="https://i.imgur.com/zVr4l4N.png" width="50px">
+    <img src="https://i.imgur.com/Bg1Gkhw.png" width="60px">
+    <img src="https://i.imgur.com/ftqh6Vm.png" width="50px">
+    <img src="https://i.imgur.com/UAG4IS4.png" width="50px">
+    <img src="https://i.imgur.com/nVqmUN7.png" width="50px">
+</div>
 
 ---
 
-### Steps to run it localy
+## Steps to run it localy
 
-1. Create a .env file in the root folder
-2. Inside the .env file create These variables:
 
-> DATABASE_URL ="your psql database url"
-
-3. Connect with your database and then initialize the init.sql file to populate your database with new tables and data. **From the root folder**
+1) Create a .env file in the root folder
+2) Connect with your database and then initialize the init.sql file to populate your database with new tables and data. **From the root folder**
 
 ```bash=
 chmod +x ./scripts/db:setup
@@ -60,8 +67,7 @@ npm run db:setup
 npm run db:build
 ```
 
-4. Now start your dev server with:
-
+3) Now start your dev server with:
 ```bash=
 npm run dev
 # or

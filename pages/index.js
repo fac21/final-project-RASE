@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import Layout from "../components/Layout/Layout.jsx";
 import SelectCountry from "../components/SelectCountry/SelectCountry.jsx";
 import Image from "next/image";
@@ -13,6 +14,9 @@ import {
 export default function Home({ data, open, setOpen }) {
   return (
     <Layout open={open} setOpen={setOpen} home>
+      <Head>
+        <title>Home</title>
+      </Head>
       <SelectCountry />
       <StyledSection>
         <StyledContainer>
@@ -34,7 +38,7 @@ export default function Home({ data, open, setOpen }) {
         </StyledContainer>
       </StyledSection>
 
-      <ItinerariesList data={data} />
+      <ItinerariesList data={data.splice(0, 6)} />
       <StyledSection>
         <hr></hr>
         <p> FAC Student Project Spring 2021 </p>

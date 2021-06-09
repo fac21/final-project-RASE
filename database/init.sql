@@ -21,7 +21,7 @@ CREATE TABLE itineraries_table (
     name TEXT NOT NULL,
     img TEXT,
     country TEXT NOT NULL,
-  c  need_car BOOLEAN NOT NULL,
+    need_car BOOLEAN NOT NULL,
     budget DECIMAL,
     duration INTEGER NOT NULL,
     description JSON NOT NULL,

@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import Layout from "../components/Layout/Layout.jsx";
 import Itineraries from "../components/Itineraries/Itineraries.jsx";
 import SelectCountry from "../components/SelectCountry/SelectCountry.jsx";
@@ -8,6 +9,9 @@ import { StyledSearchBar } from "../styles/StyledComponents/styles.styled.jsx";
 export default function Itinerary({ data, open, setOpen }) {
   return (
     <Layout open={open} setOpen={setOpen}>
+      <Head>
+        <title>Itineraries</title>
+      </Head>
       <h1>Itineraries</h1>
       <SelectCountry />
       <form>

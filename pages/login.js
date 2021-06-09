@@ -1,9 +1,9 @@
 import Layout from "../components/Layout/Layout.jsx";
+import Head from "next/head";
 import { pageAuthenticated } from "../auth/auth";
 import {
   StyledSection,
   StyledForm,
-
 } from "../styles/StyledComponents/auth.styled";
 import Link from "next/link";
 
@@ -28,8 +28,11 @@ export async function getServerSideProps({ req, res }) {
 export default function Login({ open, setOpen }) {
   return (
     <Layout login open={open} setOpen={setOpen}>
+      <Head>
+        <title>Log in</title>
+      </Head>
       <StyledSection>
-          <img className="blob" src="/blob.svg"/>
+        <img className="blob" src="/blob.svg" />
         <h1>Welcome Back!</h1>
         <p>Log in to continue</p>
         <StyledForm action="/api/login" method="post">
@@ -41,11 +44,12 @@ export default function Login({ open, setOpen }) {
             Login
           </button>
         </StyledForm>
-        <Link href="/signup">
-          <p>
-            Don't have an account? <a>Sign up</a>
-          </p>
-        </Link>
+        <p>
+          Don't have an account?{" "}
+          <Link href="/signup">
+            <a>Sign up</a>
+          </Link>
+        </p>
       </StyledSection>
     </Layout>
   );
