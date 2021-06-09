@@ -1,4 +1,5 @@
 import Layout from "../components/Layout/Layout.jsx";
+import Head from "next/head";
 import Link from "next/link";
 import {
   StyledSection,
@@ -14,6 +15,9 @@ export async function getServerSideProps({ req, res }) {
 export default function SignUp({ open, setOpen }) {
   return (
     <Layout open={open} setOpen={setOpen}>
+      <Head>
+        <title>Sign up</title>
+      </Head>
       <StyledSection>
         <h1>Create your account</h1>
         <StyledForm action="/api/signup" method="POST">

@@ -1,5 +1,7 @@
 import db from "./connection";
 
+// Itineraries
+
 export function getAllItineraryIds() {
   const SELECT_ITINERARIES = `
       SELECT * FROM itineraries_table
@@ -67,4 +69,3 @@ export function deleteSession(sid) {
   const DELETE_SESSION = "DELETE FROM sessions_table WHERE sid=$1";
   return db.query(DELETE_SESSION, [sid]);
 }
-

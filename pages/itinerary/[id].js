@@ -1,4 +1,5 @@
 import Layout from "../../components/Layout/Layout.jsx";
+import Head from "next/head";
 import Image from "next/image";
 import { getAllItineraryIds, getItineraryData } from "../../database/model";
 import styled from "styled-components";
@@ -45,6 +46,9 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
   const description = itineraryObject.description;
   return (
     <Layout open={open} setOpen={setOpen}>
+      <Head>
+        <title>{itineraryObject.name}</title>
+      </Head>
       <StyledSection>
         <h1>{itineraryObject.name}</h1>
         <StyledDiv>

@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import Layout from "../components/Layout/Layout.jsx";
 import SelectCountry from "../components/SelectCountry/SelectCountry.jsx";
 import Image from "next/image";
@@ -40,6 +41,9 @@ const Box = styled.div`
 export default function Home({ data, open, setOpen }) {
   return (
     <Layout open={open} setOpen={setOpen} home>
+      <Head>
+        <title>Home</title>
+      </Head>
       <SelectCountry />
       <StyledSection>
         <StyledContainer>

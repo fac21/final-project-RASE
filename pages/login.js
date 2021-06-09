@@ -1,4 +1,5 @@
 import Layout from "../components/Layout/Layout.jsx";
+import Head from "next/head";
 import { pageAuthenticated } from "../auth/auth";
 import {
   StyledSection,
@@ -27,6 +28,9 @@ export async function getServerSideProps({ req, res }) {
 export default function Login({ open, setOpen }) {
   return (
     <Layout open={open} setOpen={setOpen}>
+      <Head>
+        <title>Log in</title>
+      </Head>
       <StyledSection>
         <h1>Welcome Back!</h1>
         <p>Log in to continue</p>

@@ -35,17 +35,17 @@ export async function createUser(username, email, password) {
 }
 
 export async function verifyUser(email, password) {
-  try {
-    const user = await selectUser(email);
-    const match = await bcrypt.compare(password, user.password);
-    if (!match) {
-      throw new Error("Password mismatch");
-    } else {
+  const [user, selectUserError] = await getDataOrError(selectUser(email));
+  if (!selectUserError && user) {
+    const [match, matchError] = await getDataOrError(
+      bcrypt.compare(password, user.password)
+    );
+    if (!matchError && match) {
       delete user.password;
       return user;
+    } else if (!match) {
+      throw new Error("Password mismatch");
     }
-  } catch (error) {
-    console.log(error);
   }
 }
 
@@ -92,9 +92,9 @@ export const authenticated = (handler) => async (req, res) => {
 
 export async function pageAuthenticated(req) {
   let decoded, err;
+  const token = parseCookies(req).sid;
   try {
-    const token = parseCookies(req).sid;
-    decoded = verify(token, process.env.GUID);
+    if (token) decoded = verify(token, process.env.GUID);
   } catch (err) {
     console.log(err);
   }
@@ -104,7 +104,6 @@ export async function pageAuthenticated(req) {
       req.session = sessionData;
       return sessionData;
     }
-  } else {
   }
 }
 
@@ -128,5 +127,15 @@ export async function logOutSession(req, res) {
     );
   } else {
     res.redirect("/login");
+  }
+}
+
+async function getDataOrError(promise) {
+  try {
+    const data = await promise;
+    return [data, null];
+  } catch (error) {
+    console.error(error);
+    return [null, error];
   }
 }
