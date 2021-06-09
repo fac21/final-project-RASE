@@ -65,7 +65,7 @@ export default function Home({ data, open, setOpen }) {
         </StyledContainer>
       </StyledSection>
 
-      <ItinerariesList data={data} />
+      <ItinerariesList data={data.splice(0, 6)} />
       <StyledSection>
         <hr></hr>
         <p> FAC Student Project Spring 2021 </p>

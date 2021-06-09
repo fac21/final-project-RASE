@@ -1,4 +1,5 @@
 import { authenticated } from "../../auth/auth";
+import { insertItineraries } from "../../database/model";
 
 export default authenticated(async (req, res) => {
   const method = req.method;
@@ -8,8 +9,9 @@ export default authenticated(async (req, res) => {
     case "POST": {
       const itineraryObj = formatItineraryObj(req);
       itineraryObj.user_id = session.data.user.id;
+
       try {
-        console.log(itineraryObj);
+        await insertItineraries(itineraryObj);
         res.redirect("/");
         break;
       } catch (error) {
@@ -25,7 +27,6 @@ export default authenticated(async (req, res) => {
 });
 
 function formatItineraryObj(req) {
-  console.log(req.body);
   const { name, img, country, duration, budget, need_car } = req.body;
   const itineraryObj = { name, img, country, duration, budget, need_car };
   itineraryObj.need_car = itineraryObj.need_car.toLowerCase() === "yes";
@@ -39,8 +40,10 @@ function formatItineraryObj(req) {
 
   filteredDaysArray.forEach((element, index) => {
     if (element.includes("Day")) {
-      itineraryObj.description[element] =
-        req.body[filteredDaysArray[index + 1]];
+      itineraryObj.description[element] = {
+        location: req.body[filteredDaysArray[index]],
+        description: req.body[filteredDaysArray[index + 1]],
+      };
     }
   });
 

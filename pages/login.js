@@ -43,11 +43,13 @@ export default function Login({ open, setOpen }) {
             Login
           </button>
         </StyledForm>
-        <Link href="/login">
-          <p>
-            Don't have an account? <a>Sign up</a>
-          </p>
-        </Link>
+
+        <p>
+          Don't have an account?{" "}
+          <Link href="/signup">
+            <a>Sign up</a>
+          </Link>
+        </p>
       </StyledSection>
     </Layout>
   );

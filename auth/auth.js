@@ -30,7 +30,7 @@ export async function createUser(username, email, password) {
 
     return user;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -71,11 +71,11 @@ export function parseCookies(req) {
 
 export const authenticated = (handler) => async (req, res) => {
   let decoded, err;
+  const token = parseCookies(req).sid;
   try {
-    const token = parseCookies(req).sid;
-    decoded = verify(token, process.env.GUID);
+    if (token) decoded = verify(token, process.env.GUID);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
   if (!err && decoded) {
     const sessionData = await selectSession(decoded.sid);
@@ -96,7 +96,7 @@ export async function pageAuthenticated(req) {
   try {
     if (token) decoded = verify(token, process.env.GUID);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
   if (!err && decoded) {
     const sessionData = await selectSession(decoded.sid);
@@ -109,11 +109,11 @@ export async function pageAuthenticated(req) {
 
 export async function logOutSession(req, res) {
   let decoded, err;
+  const token = parseCookies(req).sid;
   try {
-    const token = parseCookies(req).sid;
     decoded = verify(token, process.env.GUID);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
   if (!err && decoded) {
     delete req.session;

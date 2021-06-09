@@ -5,7 +5,6 @@ import { selectItinerariesByCountry } from "../../database/model";
 import { StyledSearchBar } from "../../styles/StyledComponents/styles.styled.jsx";
 
 export default function Country({ data, country, open, setOpen }) {
-  console.log(data);
   return (
     <Layout open={open} setOpen={setOpen}>
       <Head>

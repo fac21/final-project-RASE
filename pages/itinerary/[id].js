@@ -24,7 +24,7 @@ const StyledDiv = styled.div`
   place-content: center;
 `;
 
-const StyledP = styled.p`
+const StyledArticle = styled.article`
   display: flex;
   justify-content: center;
   margin: 1rem;
@@ -59,19 +59,28 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
             height={400}
           ></Image>
         </StyledDiv>
-        <StyledP>
+        <StyledArticle>
           <p>£{itineraryObject.budget}</p>
           <p>{itineraryObject.need_car ? "Need car" : "Don't need car"}</p>
-        </StyledP>
+        </StyledArticle>
         <hr></hr>
         <StyledUl>
           <ul>
-            {Object.keys(description).map((key) => (
-              <li key={description[key]}>
-                <p>{key}:</p>
-                <p class="description">{description[key].description}</p>
-              </li>
-            ))}
+            {Object.keys(description).map((key) => {
+              return (
+                <li key={description[key].description}>
+                  <p>{key}:</p>
+                  <p>
+                    <span className="location">
+                      {description[key].location}
+                    </span>
+                    <span className="description">
+                      {description[key].description}
+                    </span>
+                  </p>
+                </li>
+              );
+            })}
           </ul>
         </StyledUl>
       </StyledSection>

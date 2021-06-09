@@ -53,11 +53,12 @@ export default function SignUp({ open, setOpen }) {
           <button>Create account</button>
         </StyledForm>
 
-        <Link href="/login">
-          <p>
-            Already have an account? <a>Log in</a>
-          </p>
-        </Link>
+        <p>
+          Already have an account?{" "}
+          <Link href="/login">
+            <a>Log in</a>
+          </Link>
+        </p>
       </StyledSection>
     </Layout>
   );
