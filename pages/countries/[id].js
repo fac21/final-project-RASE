@@ -3,6 +3,7 @@ import Layout from "../../components/Layout/Layout.jsx";
 import Head from "next/head";
 import { selectItinerariesByCountry } from "../../database/model";
 import { StyledSearchBar } from "../../styles/StyledComponents/styles.styled.jsx";
+import SelectCountry from "../../components/SelectCountry/SelectCountry.jsx";
 
 export default function Country({ data, country, open, setOpen }) {
   return (
@@ -10,6 +11,7 @@ export default function Country({ data, country, open, setOpen }) {
       <Head>
         <title>{country} Itineraries</title>
       </Head>
+      <SelectCountry />
       <h1>{country}</h1>
       <form>
         <StyledSearchBar>

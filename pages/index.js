@@ -4,39 +4,12 @@ import Layout from "../components/Layout/Layout.jsx";
 import SelectCountry from "../components/SelectCountry/SelectCountry.jsx";
 import Image from "next/image";
 import ItinerariesList from "../components/ItinerariesList/ItinerariesList.jsx";
-import styled from "styled-components";
 import { selectItineraries } from "../database/model";
-
-const StyledSection = styled.section`
-  max-width: 60rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-tlop: 2rem;
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-
-  p {
-    margin-top: 3rem;
-    text-align: center;
-  }
-`;
-
-const StyledContainer = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 40rem;
-  padding: 1.5rem;
-`;
-
-const Box = styled.div`
-  height: 14rem;
-  background: #dbcfb0;
-  text-align: center;
-  padding: 2rem;
-  display: grid;
-  place-content: center;
-`;
+import {
+  StyledSection,
+  StyledContainer,
+  Box,
+} from "../styles/StyledComponents/index.styled.jsx";
 
 export default function Home({ data, open, setOpen }) {
   return (

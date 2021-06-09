@@ -27,11 +27,12 @@ export async function getServerSideProps({ req, res }) {
 
 export default function Login({ open, setOpen }) {
   return (
-    <Layout open={open} setOpen={setOpen}>
+    <Layout login open={open} setOpen={setOpen}>
       <Head>
         <title>Log in</title>
       </Head>
       <StyledSection>
+        <img className="blob" src="/blob.svg" />
         <h1>Welcome Back!</h1>
         <p>Log in to continue</p>
         <StyledForm action="/api/login" method="post">
@@ -43,7 +44,6 @@ export default function Login({ open, setOpen }) {
             Login
           </button>
         </StyledForm>
-
         <p>
           Don't have an account?{" "}
           <Link href="/signup">

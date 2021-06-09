@@ -9,9 +9,6 @@ const StyledSection = styled.section`
   margin-left: auto;
   margin-right: auto;
   margin-top: 3rem;
-  h1 {
-    text-align: center;
-  }
   li {
     margin: 1rem;
     list-style-type: none;
@@ -24,10 +21,19 @@ const StyledDiv = styled.div`
   place-content: center;
 `;
 
+const StyledTitle = styled.title`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  h1 {
+    margin: 1rem;
+  }
+`;
+
 const StyledArticle = styled.article`
   display: flex;
   justify-content: center;
-  margin: 1rem;
+  margin: 2rem;
   gap: 1rem;
   font-weight: 700;
 `;
@@ -50,7 +56,10 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
         <title>{itineraryObject.name}</title>
       </Head>
       <StyledSection>
-        <h1>{itineraryObject.name}</h1>
+        <StyledTitle>
+          <h1>{itineraryObject.name}</h1>
+          <p>{itineraryObject.duration} days</p>
+        </StyledTitle>
         <StyledDiv>
           <Image
             src={itineraryObject.img}

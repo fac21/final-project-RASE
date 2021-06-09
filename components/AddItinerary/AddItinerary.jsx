@@ -32,7 +32,7 @@ export default function AddItinerary() {
         <option value="England">England</option>
         <option value="Wales">Wales</option>
         <option value="Scotland">Scotland</option>
-        <option value="Northern Ireland">N. Ireland</option>
+        <option value="northern_ireland">N. Ireland</option>
       </select>
 
       <label htmlFor="duration">
