@@ -1,6 +1,6 @@
 import { authenticated } from "../../auth/auth";
-import { insertItineraries } from "../../database/model";
-import getMap from "../../map/map";
+//import { insertItineraries } from "../../database/model";
+import getGeoCode from "../../map/map";
 
 export default authenticated(async (req, res) => {
   const method = req.method;
@@ -10,12 +10,12 @@ export default authenticated(async (req, res) => {
     case "POST": {
       const itineraryObj = formatItineraryObj(req);
       itineraryObj.user_id = session.data.user.id;
-      const { longitude, latitude, region } = await getMap(req.body.postcode);
-      itineraryObj.longitude = longitude;
-      itineraryObj.latitude = latitude;
-      itineraryObj.region = region;
+      const { coordinates, location } = await getGeoCode(req.body.postcode);
+      itineraryObj.coordinates = coordinates;
+      itineraryObj.location = location;
+      console.log(itineraryObj);
       try {
-        await insertItineraries(itineraryObj);
+        //await insertItineraries(itineraryObj);
         res.redirect("/");
         break;
       } catch (error) {

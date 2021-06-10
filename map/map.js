@@ -1,16 +1,15 @@
-export default async function getMap(postcode) {
+export default async function getGeoCode(postcode) {
   const response = await fetch(
     "https://api.postcodes.io/postcodes/" + postcode
   );
   const result = await response.json();
   console.log("result", result);
-  const longitude = result.longitude;
-  const latitude = result.latitude;
-  const region = result.region;
+  const latitude = result.result.latitude;
+  const longitude = result.result.longitude;
+  const location = result.result.admin_district;
 
   return {
-    longitude,
-    latitude,
-    region,
+    coordinates: [latitude, longitude],
+    location,
   };
 }
