@@ -14,6 +14,8 @@ export const StyledItineraries = styled.section`
   img {
     object-fit: cover;
     margin-bottom: 1rem;
+    max-width: 16rem;
+    height: 12rem;
   }
 
   .itinerary_info {

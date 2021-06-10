@@ -5,10 +5,11 @@ import Itineraries from "../components/Itineraries/Itineraries.jsx";
 import SelectCountry from "../components/SelectCountry/SelectCountry.jsx";
 import { selectItineraries } from "../database/model";
 import { StyledSearchBar } from "../styles/StyledComponents/styles.styled.jsx";
+import { pageAuthenticated } from "../auth/auth";
 
-export default function Itinerary({ data, open, setOpen }) {
+export default function Itinerary({ data, open, setOpen, logged }) {
   return (
-    <Layout open={open} setOpen={setOpen}>
+    <Layout open={open} setOpen={setOpen} logged={logged}>
       <Head>
         <title>Itineraries</title>
       </Head>
@@ -24,8 +25,20 @@ export default function Itinerary({ data, open, setOpen }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ req, res }) {
+  await pageAuthenticated(req);
   const data = await selectItineraries();
+  const sessionData = req.session;
+
+  if (sessionData) {
+    return {
+      props: {
+        logged: true,
+        data,
+      },
+    };
+  }
+
   return {
     props: {
       data,
