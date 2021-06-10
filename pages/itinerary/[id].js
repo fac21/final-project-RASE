@@ -4,6 +4,7 @@ import { getItineraryData } from "../../database/model";
 import styled from "styled-components";
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
+import { pageAuthenticated } from "../../auth/auth";
 
 const StyledSection = styled.section`
   max-width: 60rem;
@@ -133,7 +134,18 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
 }
 
 export async function getServerSideProps({ params }) {
+  await pageAuthenticated(req);
+  const sessionData = req.session;
   const itineraryData = await getItineraryData(params.id);
+
+  if (sessionData) {
+    return {
+      props: {
+        logged: true,
+        itineraryData,
+      },
+    };
+  }
 
   return {
     props: { itineraryData },

@@ -49,7 +49,6 @@ export default function Home({ data, open, setOpen, logged }) {
 }
 
 export async function getServerSideProps({ req, res }) {
-  console.log("in");
   await pageAuthenticated(req);
   const sessionData = req.session;
   const data = await selectItineraries();
