@@ -1,20 +1,32 @@
 import Layout from "../components/Layout/Layout.jsx";
 import Head from "next/head";
 import Link from "next/link";
+import { pageAuthenticated } from "../auth/auth";
 import {
   StyledSection,
   StyledForm,
 } from "../styles/StyledComponents/auth.styled";
 
 export async function getServerSideProps({ req, res }) {
+  await pageAuthenticated(req);
+  const sessionData = req.session;
+
+  if (sessionData) {
+    return {
+      props: {
+        logged: true
+      },
+    };
+  }
+
   return {
     props: {},
   };
 }
 
-export default function SignUp({ open, setOpen }) {
+export default function SignUp({ open, setOpen, logged }) {
   return (
-    <Layout login open={open} setOpen={setOpen}>
+    <Layout login open={open} setOpen={setOpen} logged={logged}>
       <Head>
         <title>Sign up</title>
       </Head>
