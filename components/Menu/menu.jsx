@@ -3,15 +3,16 @@ import { bool } from "prop-types";
 import { StyledMenu } from "./menu.styled";
 import Link from "next/link";
 
-const Menu = ({ open, setOpen }) => {
+const Menu = ({ open, setOpen, logged }) => {
   return (
-    <StyledMenu id={"menu"} open={open} onClick={() => setOpen(!open)}>
-      <Link href="/signup">
-        <a>Sign Up</a>
-      </Link>
-      <Link href="/login">
+    <StyledMenu id={"menu"} open={open} onClick={() => setOpen(!open)}>  
+      {!logged ? <><Link href="/login">
         <a>Log In</a>
-      </Link>
+      </Link> <Link href="/signup">
+        <a>Sign Up</a>
+      </Link> </>: <Link href="/logout">
+        <a>Log Out</a>
+      </Link>}
       <Link href="/addItinerary">
         <a>Add Itinerary</a>
       </Link>

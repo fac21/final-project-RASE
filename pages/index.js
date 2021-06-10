@@ -5,18 +5,16 @@ import SelectCountry from "../components/SelectCountry/SelectCountry.jsx";
 import Image from "next/image";
 import ItinerariesList from "../components/ItinerariesList/ItinerariesList.jsx";
 import { selectItineraries } from "../database/model";
+import { pageAuthenticated } from "../auth/auth";
 import {
   StyledSection,
   StyledContainer,
   Box,
 } from "../styles/StyledComponents/index.styled.jsx";
 
-
-
-export default function Home({ data, open, setOpen, access_token }) {
-  
+export default function Home({ data, open, setOpen, logged }) {
   return (
-    <Layout open={open} setOpen={setOpen} home>
+    <Layout open={open} setOpen={setOpen} logged={logged} home>
       <Head>
         <title>Home</title>
       </Head>
@@ -50,11 +48,23 @@ export default function Home({ data, open, setOpen, access_token }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ req, res }) {
+  await pageAuthenticated(req);
+  const sessionData = req.session;
   const data = await selectItineraries();
+
+  if (sessionData) {
+    return {
+      props: {
+        data,
+        logged: true,
+      },
+    };
+  }
+
   return {
     props: {
-      data
+      data,
     },
   };
 }

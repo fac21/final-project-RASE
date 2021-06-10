@@ -5,7 +5,7 @@ import { StyledSection } from "./layout.styled.jsx";
 
 export const siteTitle = "UK Travel Guide";
 
-export default function Layout({ children, home, open, setOpen, login }) {
+export default function Layout({ children, home, open, setOpen, login, logged }) {
   return (
     <div>
       <Head>
@@ -29,7 +29,7 @@ export default function Layout({ children, home, open, setOpen, login }) {
         <meta name="og:title" content={siteTitle} />
       </Head>
       <StyledSection>
-        <header>{!login && <Nav open={open} setOpen={setOpen} />}</header>
+        <header>{!login && <Nav open={open} setOpen={setOpen} logged={logged} />}</header>
         <main>{children}</main>
         {!home && (
           <div className="homeLink">
