@@ -3,7 +3,7 @@ import Head from "next/head";
 import AddItinerary from "../components/AddItinerary/AddItinerary";
 import { pageAuthenticated } from "../auth/auth";
 
-export default function addItinerary({ data, open, setOpen, logged }) {
+export default function addItinerary({ open, setOpen, logged }) {
   return (
     <Layout open={open} setOpen={setOpen} logged={logged}>
       <Head>
@@ -29,7 +29,7 @@ export async function getServerSideProps({ req, res }) {
   }
   return {
     props: {
-      logged: true
+      logged: true,
     },
   };
 }

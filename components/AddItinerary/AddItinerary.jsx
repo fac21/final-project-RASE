@@ -98,7 +98,7 @@ export default function AddItinerary() {
         <option value="England">England</option>
         <option value="Wales">Wales</option>
         <option value="Scotland">Scotland</option>
-        <option value="northern_ireland">N. Ireland</option>
+        <option value="Northern Ireland">N. Ireland</option>
       </select>
 
       <label htmlFor="duration">
@@ -164,7 +164,8 @@ function Day({ dayNumber }) {
   return (
     <div className="dayItin">
       <label htmlFor={day}>{day}</label>
-      <input id={day} name={day} type="text" placeholder="location" required />
+      <p>Insert postcode of the place and description of the day</p>
+      <input id={day} name={day} type="text" placeholder="postcode" required />
       <input
         id={description}
         name={description}

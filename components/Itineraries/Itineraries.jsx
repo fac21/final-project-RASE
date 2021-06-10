@@ -1,21 +1,22 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { StyledItineraries } from "./Itineraries.styled.jsx";
 
 export default function Itineraries({ data }) {
-
   const itineraries = data.map((itinerary) => {
-
     return (
       <StyledItineraries key={itinerary.id}>
+        <Link href={`/itinerary/${itinerary.id}`}>
+          <a>
+            <img src={itinerary.img} alt={itinerary.name + "photo"} />
+          </a>
+        </Link>
         <div className="itinerary_info">
-          <img
-            src={itinerary.img}
-            alt={itinerary.name + "photo"}
-            width={250}
-            height={200}
-          />
+          <Link href={`/itinerary/${itinerary.id}`}>
+            <a>
+              <img src={itinerary.img} alt={itinerary.name + "photo"} />
+            </a>
+          </Link>
           <h2>
             <Link href={`/itinerary/${itinerary.id}`}>
               <a>{itinerary.name}</a>

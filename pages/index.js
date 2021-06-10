@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image"
+import Image from "next/image";
 import Head from "next/head";
 import Layout from "../components/Layout/Layout.jsx";
 import SelectCountry from "../components/SelectCountry/SelectCountry.jsx";
@@ -10,8 +10,7 @@ import {
   StyledSection,
   StyledContainer,
   Box,
-} from "../styles/StyledComponents/index.styled.jsx"
-
+} from "../styles/StyledComponents/index.styled.jsx";
 
 export default function Home({ data, open, setOpen, logged }) {
   return (
@@ -50,16 +49,16 @@ export default function Home({ data, open, setOpen, logged }) {
 }
 
 export async function getServerSideProps({ req, res }) {
+  console.log("in");
   await pageAuthenticated(req);
   const sessionData = req.session;
   const data = await selectItineraries();
-
 
   if (sessionData) {
     return {
       props: {
         data,
-        logged: true
+        logged: true,
       },
     };
   }
@@ -69,6 +68,4 @@ export async function getServerSideProps({ req, res }) {
       data,
     },
   };
-
 }
-
