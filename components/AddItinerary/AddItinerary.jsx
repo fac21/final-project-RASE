@@ -32,7 +32,7 @@ export default function AddItinerary() {
         <option value="England">England</option>
         <option value="Wales">Wales</option>
         <option value="Scotland">Scotland</option>
-        <option value="northern_ireland">N. Ireland</option>
+        <option value="Northern Ireland">N. Ireland</option>
       </select>
 
       <label htmlFor="duration">
@@ -78,11 +78,6 @@ export default function AddItinerary() {
           onClick={() => setDayCount(dayCount + 1)}
         />
       </div>
-      <label htmlFor="postcode">
-        Please enter the postcode of your first location so we can add a pin to
-        the map!
-      </label>
-      <input id="postcode" name="postcode" type="text"></input>
 
       <button type="submit"> Add my itinerary! </button>
     </form>

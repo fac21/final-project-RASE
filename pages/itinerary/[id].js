@@ -1,6 +1,5 @@
 import Layout from "../../components/Layout/Layout.jsx";
 import Head from "next/head";
-import Image from "next/image";
 import { getItineraryData } from "../../database/model";
 import styled from "styled-components";
 import dynamic from "next/dynamic";
@@ -52,7 +51,7 @@ const StyledUl = styled.ul`
 export default function Itinerary({ itineraryData, open, setOpen }) {
   const description = itineraryData.description;
   const MapWithNoSSR = dynamic(
-    () => import("../../components/Map1/mapone.jsx"),
+    () => import("../../components/Map/MapComponent.jsx"),
     {
       ssr: false,
     }
@@ -71,8 +70,6 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
     return;
   }, []);
 
-  console.log("End", mapMarkers);
-
   return (
     <Layout open={open} setOpen={setOpen}>
       <Head>
@@ -84,12 +81,12 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
           <p>{itineraryData.duration} days</p>
         </StyledTitle>
         <StyledDiv>
-          <Image
+          <img
             src={itineraryData.img}
             alt="itinerary"
-            width={400}
-            height={400}
-          ></Image>
+            width={"100%"}
+            height={"100%"}
+          />
           <div id="mapid" className="mapClass">
             <MapWithNoSSR mapMarkers={mapMarkers} />
           </div>
@@ -101,7 +98,7 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
         <hr></hr>
         <StyledUl>
           <ul>
-            {Object.keys(description).map((key) => {
+            {Object.keys(description).sort().map((key) => {
               return (
                 <li key={description[key].description + Math.random()}>
                   <p>{key}:</p>
@@ -127,26 +124,8 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
   );
 }
 
-// export async function getStaticPaths() {
-//   const pathData = await getAllItineraryIds();
-//   const paths = pathData.map(({ id }) => {
-//     return {
-//       params: {
-//         id: id.toString(),
-//       },
-//     };
-//   });
-
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// }
-
 export async function getServerSideProps({ params }) {
   const itineraryData = await getItineraryData(params.id);
-
-  console.log(itineraryData);
 
   return {
     props: { itineraryData },

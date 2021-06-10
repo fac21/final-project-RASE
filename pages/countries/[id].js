@@ -29,7 +29,9 @@ export async function getServerSideProps(context) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  const country = capitalize(context.query.id).replace("_", " ");
+
+
+  const country = context.query.id.split("_").map(word=> capitalize(word)).join(" ");
   const data = await selectItinerariesByCountry(country);
   return {
     props: {

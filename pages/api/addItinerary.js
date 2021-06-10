@@ -11,8 +11,6 @@ export default authenticated(async (req, res) => {
       const itineraryObj = await formatItineraryObj(req);
       itineraryObj.user_id = session.data.user.id;
 
-      console.log(itineraryObj);
-
       try {
         const { id } = await insertItineraries(itineraryObj);
         res.redirect(`/itinerary/${id}`);
@@ -30,7 +28,7 @@ export default authenticated(async (req, res) => {
 });
 
 async function formatItineraryObj(req) {
-  const { name, img, country, duration, budget, need_car, postcode } = req.body;
+  const { name, img, country, duration, budget, need_car } = req.body;
 
   const itineraryObj = { name, img, country, duration, budget, need_car };
   itineraryObj.need_car = itineraryObj.need_car.toLowerCase() === "yes";
