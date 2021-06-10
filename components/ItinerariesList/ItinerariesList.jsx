@@ -13,10 +13,7 @@ export default function ItinerariesList({ data }) {
               <Link key={itinerary.name} href={`/itinerary/${itinerary.id}`}>
                 <a>
                   <li>
-                    <img
-                      src={itinerary.img}
-                      alt={itinerary.name}
-                    />
+                    <img src={itinerary.img} alt={itinerary.name} />
                   </li>
                   <p>{itinerary.name}</p>
                 </a>
@@ -31,5 +28,3 @@ export default function ItinerariesList({ data }) {
     </>
   );
 }
-
-// to add at a later stage - map through all itineraries and display the image from each itinerary (like in Week 9)
