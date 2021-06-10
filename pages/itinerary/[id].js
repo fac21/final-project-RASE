@@ -33,7 +33,8 @@ const StyledTitle = styled.div`
 
 const StyledArticle = styled.article`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin: 2rem;
   gap: 1rem;
   font-weight: 700;
@@ -96,8 +97,12 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
           </StyledImage>
         </StyledDiv>
         <StyledArticle>
-          <p>£{itineraryData.budget}</p>
-          <p>{itineraryData.need_car ? "Need car" : "Don't need car"}</p>
+          <p>Rough budget for trip: £{itineraryData.budget}</p>
+          <p>
+            {itineraryData.need_car
+              ? "You'll need a car"
+              : "You don't need a car"}
+          </p>
         </StyledArticle>
         <hr></hr>
         <h1>Itinerary</h1>
