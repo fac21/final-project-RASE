@@ -51,6 +51,10 @@ const StyledUl = styled.ul`
 const StyledImage = styled.div`
   img {
     object-fit: cover;
+    width: 20rem;
+    height: 12rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 `;
 
@@ -87,21 +91,16 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
           <p>{itineraryData.duration} days</p>
         </StyledTitle>
         <StyledDiv>
-          <img
-            src={itineraryData.img}
-            alt="itinerary"
-            width={"100%"}
-            height={"100%"}
-          />
-          <div id="mapid" className="mapClass">
-            <MapWithNoSSR mapMarkers={mapMarkers} />
-          </div>
+          <StyledImage>
+            <img src={itineraryData.img} alt="itinerary" />
+          </StyledImage>
         </StyledDiv>
         <StyledArticle>
           <p>£{itineraryData.budget}</p>
           <p>{itineraryData.need_car ? "Need car" : "Don't need car"}</p>
         </StyledArticle>
         <hr></hr>
+        <h1>Itinerary</h1>
         <StyledUl>
           <ul>
             {Object.keys(description)
@@ -127,6 +126,11 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
               })}
           </ul>
         </StyledUl>
+        <hr></hr>
+        <h1>Map</h1>
+        <div id="mapid" className="mapClass">
+          <MapWithNoSSR mapMarkers={mapMarkers} />
+        </div>
       </StyledSection>
     </Layout>
   );
