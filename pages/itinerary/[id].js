@@ -60,7 +60,7 @@ const StyledImage = styled.div`
   }
 `;
 
-export default function Itinerary({ itineraryData, open, setOpen }) {
+export default function Itinerary({ itineraryData, open, setOpen, logged }) {
   const description = itineraryData.description;
   const MapWithNoSSR = dynamic(
     () => import("../../components/Map/MapComponent.jsx"),
@@ -83,7 +83,7 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
   }, []);
 
   return (
-    <Layout open={open} setOpen={setOpen}>
+    <Layout open={open} setOpen={setOpen} logged={logged}>
       <Head>
         <title>{itineraryData.name}</title>
       </Head>
@@ -142,10 +142,10 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
-  await pageAuthenticated(req);
-  const sessionData = req.session;
-  const itineraryData = await getItineraryData(params.id);
+export async function getServerSideProps(context) {
+  await pageAuthenticated(context.req);
+  const sessionData = context.req.session;
+  const itineraryData = await getItineraryData(context.query.id);
 
   if (sessionData) {
     return {
