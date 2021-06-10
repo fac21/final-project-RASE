@@ -19,6 +19,7 @@
     "cookie-parser": "^1.4.5",
     "crypto": "^1.0.1",
     "dotenv": "^10.0.0",
+    "esri-leaflet-geocoder": "^3.0.0",
     "jsonwebtoken": "^8.5.1",
     "leaflet": "^1.7.1",
     "leaflet-defaulticon-compatibility": "^0.1.1",

@@ -9,11 +9,11 @@ export default function Itineraries({ data }) {
       <StyledItineraries key={itinerary.id}>
         <Link href={`/itinerary/${itinerary.id}`}>
           <a>
-            <Image
+            <img
               src={itinerary.img}
               alt={itinerary.name + "photo"}
-              width={500}
-              height={300}
+              width={"100%"}
+              height={"100%"}
             />
           </a>
         </Link>

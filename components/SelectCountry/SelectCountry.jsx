@@ -24,7 +24,7 @@ export default function SelectCountry() {
       <Link href="/countries/scotland">
         <a>Scotland</a>
       </Link>
-      <Link href="/countries/northern_ireland">
+      <Link href="/countries/northern_Ireland">
         <a>N. Ireland</a>
       </Link>
     </StyledDiv>

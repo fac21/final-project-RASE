@@ -1,8 +1,9 @@
 import Layout from "../../components/Layout/Layout.jsx";
 import Head from "next/head";
-import Image from "next/image";
-import { getAllItineraryIds, getItineraryData } from "../../database/model";
+import { getItineraryData } from "../../database/model";
 import styled from "styled-components";
+import dynamic from "next/dynamic";
+import { useState, useEffect } from "react";
 
 const StyledSection = styled.section`
   max-width: 60rem;
@@ -21,7 +22,7 @@ const StyledDiv = styled.div`
   place-content: center;
 `;
 
-const StyledTitle = styled.title`
+const StyledTitle = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -48,41 +49,67 @@ const StyledUl = styled.ul`
 `;
 
 export default function Itinerary({ itineraryData, open, setOpen }) {
-  const itineraryObject = JSON.parse(itineraryData);
-  const description = itineraryObject.description;
+  const description = itineraryData.description;
+  const MapWithNoSSR = dynamic(
+    () => import("../../components/Map/MapComponent.jsx"),
+    {
+      ssr: false,
+    }
+  );
+
+  const [mapMarkers, setMapMarkers] = useState([]);
+
+  useEffect(() => {
+    const temporaryMapMarkers = Object.keys(description).map((key) => {
+      if (description[key].location) return description[key].location;
+      return;
+    });
+
+    setMapMarkers(temporaryMapMarkers);
+
+    return;
+  }, []);
+
   return (
     <Layout open={open} setOpen={setOpen}>
       <Head>
-        <title>{itineraryObject.name}</title>
+        <title>{itineraryData.name}</title>
       </Head>
       <StyledSection>
         <StyledTitle>
-          <h1>{itineraryObject.name}</h1>
-          <p>{itineraryObject.duration} days</p>
+          <h1>{itineraryData.name}</h1>
+          <p>{itineraryData.duration} days</p>
         </StyledTitle>
         <StyledDiv>
-          <Image
-            src={itineraryObject.img}
+          <img
+            src={itineraryData.img}
             alt="itinerary"
-            width={400}
-            height={400}
-          ></Image>
+            width={"100%"}
+            height={"100%"}
+          />
+          <div id="mapid" className="mapClass">
+            <MapWithNoSSR mapMarkers={mapMarkers} />
+          </div>
         </StyledDiv>
         <StyledArticle>
-          <p>£{itineraryObject.budget}</p>
-          <p>{itineraryObject.need_car ? "Need car" : "Don't need car"}</p>
+          <p>£{itineraryData.budget}</p>
+          <p>{itineraryData.need_car ? "Need car" : "Don't need car"}</p>
         </StyledArticle>
         <hr></hr>
         <StyledUl>
           <ul>
-            {Object.keys(description).map((key) => {
+            {Object.keys(description).sort().map((key) => {
               return (
-                <li key={description[key].description}>
+                <li key={description[key].description + Math.random()}>
                   <p>{key}:</p>
                   <p>
-                    <span className="location">
-                      {description[key].location}
-                    </span>
+                    {description[key].location ? (
+                      <span className="location">
+                        {description[key].location.location}
+                      </span>
+                    ) : (
+                      ""
+                    )}
                     <span className="description">
                       {description[key].description}
                     </span>
@@ -97,25 +124,9 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
   );
 }
 
-export async function getStaticPaths() {
-  const pathData = await getAllItineraryIds();
-  const paths = pathData.map(({ id }) => {
-    return {
-      params: {
-        id: id.toString(),
-      },
-    };
-  });
+export async function getServerSideProps({ params }) {
+  const itineraryData = await getItineraryData(params.id);
 
-  return {
-    paths,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params }) {
-  const itinerary = await getItineraryData(params.id);
-  const itineraryData = JSON.stringify(itinerary);
   return {
     props: { itineraryData },
   };

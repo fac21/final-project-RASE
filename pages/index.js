@@ -10,8 +10,7 @@ import {
   StyledSection,
   StyledContainer,
   Box,
-} from "../styles/StyledComponents/index.styled.jsx"
-
+} from "../styles/StyledComponents/index.styled.jsx";
 
 export default function Home({ data, open, setOpen, logged }) {
   return (
@@ -54,12 +53,11 @@ export async function getServerSideProps({ req, res }) {
   const sessionData = req.session;
   const data = await selectItineraries();
 
-
   if (sessionData) {
     return {
       props: {
         data,
-        logged: true
+        logged: true,
       },
     };
   }
@@ -69,6 +67,4 @@ export async function getServerSideProps({ req, res }) {
       data,
     },
   };
-
 }
-
