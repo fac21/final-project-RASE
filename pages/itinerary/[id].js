@@ -1,6 +1,5 @@
 import Layout from "../../components/Layout/Layout.jsx";
 import Head from "next/head";
-import Image from "next/image";
 import { getAllItineraryIds, getItineraryData } from "../../database/model";
 import styled from "styled-components";
 
@@ -47,6 +46,12 @@ const StyledUl = styled.ul`
   }
 `;
 
+const StyledImage = styled.div `
+img {
+  object-fit: cover;
+}
+`;
+
 export default function Itinerary({ itineraryData, open, setOpen }) {
   const itineraryObject = JSON.parse(itineraryData);
   const description = itineraryObject.description;
@@ -61,12 +66,14 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
           <p>{itineraryObject.duration} days</p>
         </StyledTitle>
         <StyledDiv>
-          <Image
+        <StyledImage>
+          <img
             src={itineraryObject.img}
             alt="itinerary"
             width={400}
             height={400}
-          ></Image>
+          />
+          </StyledImage>
         </StyledDiv>
         <StyledArticle>
           <p>£{itineraryObject.budget}</p>
@@ -115,7 +122,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const itinerary = await getItineraryData(params.id);
+  console.log("itinerary", itinerary)
   const itineraryData = JSON.stringify(itinerary);
+  console.log("itineraryData", itineraryData)
   return {
     props: { itineraryData },
   };

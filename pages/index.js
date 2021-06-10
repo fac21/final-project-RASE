@@ -1,8 +1,8 @@
 import React from "react";
+import Image from "next/image"
 import Head from "next/head";
 import Layout from "../components/Layout/Layout.jsx";
 import SelectCountry from "../components/SelectCountry/SelectCountry.jsx";
-import Image from "next/image";
 import ItinerariesList from "../components/ItinerariesList/ItinerariesList.jsx";
 import { selectItineraries } from "../database/model";
 import { pageAuthenticated } from "../auth/auth";

@@ -4,7 +4,7 @@ export const StyledSection = styled.section`
   max-width: 60rem;
   margin-left: auto;
   margin-right: auto;
-  margin-tlop: 2rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;

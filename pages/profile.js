@@ -10,6 +10,7 @@ const StyledSection = styled.section`
 max-width: 40rem;
 margin-left: auto;
 margin-right: auto;
+padding: 2rem;
 
 > * {
   margin-top: 2rem;
@@ -20,19 +21,14 @@ h1{
   float: left;
   font-size: 1.7rem;
 }
-a{
-  float: right;
-  padding-right: 2rem;
-  text-decoration: underline;
-  pointer: cursor;
-}
+
 `
 const StyledUserSection = styled.aside`
   max-width: 35rem;
   margin: 2rem auto 2rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-around;
+  align-items: flex-end;
   clear: both;
 
   h2{
@@ -61,6 +57,40 @@ max-width: 35rem;
   margin-top: 2rem;
 }
 
+.itineraryList{
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+
+.itineraryList > *{
+  width: 20rem;
+}
+
+.addItinerary{
+    max-width: 20rem;
+    width: 20rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    box-shadow: 10px 10px 5px #8080803f;
+    padding: 1rem;
+    border: 1px solid #8080803f;
+    display: grid;
+    place-content: center;
+    color: orange;
+    // background-color:#627964;
+}
+
+a {
+  text-align: center;
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #627964;
+  display: block;
+}
+
 `
 
 export default function Profile({ open, setOpen, logged, user, itineraries }) {
@@ -70,10 +100,6 @@ export default function Profile({ open, setOpen, logged, user, itineraries }) {
       <Head>
         <title>My Profile</title>
       </Head>
-
-      <Itineraries data={itineraries} />
-
-
 
       <StyledSection>
         <h1>My Profile</h1>
@@ -88,25 +114,24 @@ export default function Profile({ open, setOpen, logged, user, itineraries }) {
           </div>
 
         </StyledUserSection>
-        {/* <Link href="/profile">
-          <a>Edit</a>
-        </Link> */}
 
         <StyledItinerarySection>
           <hr></hr>
           <h2>My Itineraries</h2>
+          <div className="itineraryList">
+            <Itineraries data={itineraries} />
+            <div className="addItinerary">
+              <Link href="/addItinerary">
+                <a>Add Itinerary</a>
+              </Link>
+            </div>
+          </div>
 
-          {/* <div className="itineraryImage">
-            
-            <Link href="">
-              <p>{itineraries.name}</p>
-            </Link>
-          </div> */}
-          <Link href="/addItinerary">
-            <a>Add Itinerary</a>
-          </Link>
         </StyledItinerarySection>
       </StyledSection>
+      <form action="/api/logout" method="post">
+        <input class="input" id="logout" type="submit" value="Logout" />
+      </form>
     </Layout>
   );
 }
@@ -115,10 +140,6 @@ export default function Profile({ open, setOpen, logged, user, itineraries }) {
 export async function getServerSideProps({ req, res }) {
   await pageAuthenticated(req);
   const sessionData = req.session;
-  const userId = sessionData.data.user.id;
-  const itineraries = await getUsersItinerary(userId);
-
-
   if (!sessionData) {
     return {
       redirect: {
@@ -127,6 +148,11 @@ export async function getServerSideProps({ req, res }) {
       },
     };
   }
+
+  const userId = sessionData.data.user.id;
+  const itineraries = await getUsersItinerary(userId);
+
+
 
   return {
     props: {
