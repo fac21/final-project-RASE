@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 
 const StyledSection = styled.section`
-  max-width: 60rem;
+  max-width: 40rem;
   margin-left: auto;
   margin-right: auto;
   margin-top: 3rem;
