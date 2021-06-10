@@ -43,8 +43,13 @@ export function getAllItineraryIds() {
 
 export function getItineraryData(id) {
   const SELECT_ITINERARIES = `
-  SELECT * FROM itineraries_table WHERE id=$1`;
+  SELECT * FROM itineraries_table WHERE user_id=$1`;
   return db.query(SELECT_ITINERARIES, [id]).then((result) => result.rows[0]);
+}
+
+export function getUsersItinerary(user_id) {
+  const SELECT_ITINERARIES = `SELECT * FROM itineraries_table WHERE user_id =$1`
+  return db.query(SELECT_ITINERARIES, [user_id]).then((result) => result.rows);
 }
 
 export function insertItineraries({

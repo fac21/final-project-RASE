@@ -4,17 +4,18 @@ import Link from "next/link";
 import { StyledItineraries } from "./Itineraries.styled.jsx";
 
 export default function Itineraries({ data }) {
+  
   const itineraries = data.map((itinerary) => {
     return (
       <StyledItineraries key={itinerary.id}>
         <Link href={`/itinerary/${itinerary.id}`}>
           <a>
-            <Image
+            {/* <Image
               src={itinerary.img}
               alt={itinerary.name + "photo"}
               width={500}
               height={300}
-            />
+            /> */}
           </a>
         </Link>
         <div className="itinerary_info">

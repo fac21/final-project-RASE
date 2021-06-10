@@ -19,6 +19,7 @@ export default async (req, res) => {
           setCookie(res, "sid", jwt);
         }
 
+      
         res.redirect("/");
         break;
       } catch (error) {
