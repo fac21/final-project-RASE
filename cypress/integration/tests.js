@@ -1,5 +1,5 @@
 beforeEach(() => {
-  // cy.task("resetDb");
+  cy.task("resetDb");
 });
 
 describe("check homepage link ", () => {
@@ -20,10 +20,10 @@ describe("check burger menu", () => {
     cy.get("#menu").should("not.be.visible");
   });
 
-  it("navigate one of the england page", () => {
+  it("navigate to login page from burger menu", () => {
     cy.get("#burger").click();
-    cy.get("#menu").find("a[href='/countries/england']").click({ multiple: true });
-    cy.url().should("include", "/england");
+    cy.get("#menu").find("a[href='/login']").click({ multiple: true });
+    cy.url().should("include", "/login");
   });
 
   it("navigate to signup page", () => {
@@ -47,10 +47,10 @@ describe("Check Itineraries", () => {
   });
 });
 
-describe("Check UK TRAVEL GUIDE on nav lead you to the home", () => {
+describe("Check that clicking UK TRAVEL SWAP on nav, leads you to the home", () => {
   it("check if the see all lead you to all the Itineraries", () => {
     cy.visit("/itineraries");
-    cy.get("a[class*='navTitle']").contains("UK TRAVEL GUIDE").click();
+    cy.get("a[class*='navTitle']").contains("UK TRAVEL SWAP").click();
     cy.url().should("include", "/");
   });
 });
@@ -58,7 +58,7 @@ describe("Check UK TRAVEL GUIDE on nav lead you to the home", () => {
 describe("Check individual itinerary pages", () => {
   it("Check that link to individual page works", () => {
     cy.visit("/itineraries");
-    cy.get("a[href*='itinerary/1']").click({ multiple: true });
+    cy.get("a[href='itinerary/1']").click();
     cy.url().should("include", "1");
   });
 
@@ -84,7 +84,7 @@ describe("Checking cookies", () => {
     cy.visit("/signup");
     cy.get("form").find("input[name='username']").type("test");
     cy.get("form").find("input[name='email']").type("test@test.com");
-    cy.get("form").find("input[name='password']").type("test");
+    cy.get("form").find("input[name='password']").type("Password1");
     cy.get("form").submit();
     cy.url().should("include", "/");
     cy.getCookie("sid").should("exist");
@@ -98,9 +98,20 @@ describe("Checking cookies", () => {
   });
 
   it("Checking if cookie has been set on login", () => {
+    cy.visit("/signup");
+    cy.get("form").find("input[name='username']").type("test");
+    cy.get("form").find("input[name='email']").type("test@test.com");
+    cy.get("form").find("input[name='password']").type("Password1");
+    cy.get("form").submit();
+    cy.url().should("include", "/");
+    cy.get("#burger").click();
+    cy.get("#menu").get("a[href*='logout']").click();
+    cy.url().should("include", "/logout");
+    cy.get("form").submit();
+    cy.url().should("include", "/");
     cy.visit("/login");
     cy.get("form").find("input[name='email']").type("test@test.com");
-    cy.get("form").find("input[name='password']").type("test");
+    cy.get("form").find("input[name='password']").type("Password1");
     cy.get("form").submit();
     cy.url().should("include", "/");
     cy.getCookie("sid").should("exist");
@@ -109,7 +120,7 @@ describe("Checking cookies", () => {
   it("Checking if log in doesn't exist, cookie isn't generated", () => {
     cy.visit("/login");
     cy.get("form").find("input[name='email']").type("test2@test.com");
-    cy.get("form").find("input[name='password']").type("test2");
+    cy.get("form").find("input[name='password']").type("Password2");
     cy.get("form").submit();
     cy.url().should("include", "/");
     cy.getCookie("sid").should("not.exist");
