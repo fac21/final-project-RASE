@@ -22,7 +22,7 @@ describe("check burger menu", () => {
 
   it("navigate to login page from burger menu", () => {
     cy.get("#burger").click();
-    cy.get("#menu").find("a[href='/login']").click({ multiple: true });
+    cy.get("#menu").find("a[href='/login']").click();
     cy.url().should("include", "/login");
   });
 
@@ -58,7 +58,7 @@ describe("Check that clicking UK TRAVEL SWAP on nav, leads you to the home", () 
 describe("Check individual itinerary pages", () => {
   it("Check that link to individual page works", () => {
     cy.visit("/itineraries");
-    cy.get("a[href='itinerary/1']").click();
+    cy.get("div[class*='itinerary_info']").get("a[href='/itinerary/1']").click({ multiple: true });
     cy.url().should("include", "1");
   });
 
@@ -66,7 +66,7 @@ describe("Check individual itinerary pages", () => {
     cy.visit("/itineraries");
     cy.get("a[href*='itinerary/5']").click({ multiple: true });
     cy.url().should("include", "5");
-    cy.contains("Need car");
+    cy.contains("You'll need a car");
     cy.contains("£1400");
     cy.contains("Day One");
     cy.contains("Oxford, Stratford Upon Avon");
