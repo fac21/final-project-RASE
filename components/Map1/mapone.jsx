@@ -3,7 +3,7 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 
-function MyMap() {
+function MyMap({ mapMarkers }) {
   const lat = 52.34026;
   const long = -1.585825;
 
@@ -12,7 +12,7 @@ function MyMap() {
 
   const access_token = process.env.MY_ACCESS_TOKEN;
 
-  console.log(access_token)
+  // console.log("map",mapMarkers)
   return (
     <MapContainer
       center={[lat, long]}
@@ -22,14 +22,15 @@ function MyMap() {
     >
       <TileLayer
         url={`https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGFnaW5vbSIsImEiOiJja3BwY2JtcDUwNXhqMm9rOWt4dW9rZ3UwIn0.vXHyHkc829wAIuft63zUng`}
-        attribution='Map data &copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors, <a href=&quot;https://creativecommons.org/licenses/by-sa/2.0/&quot;>CC-BY-SA</a>, Imagery &copy; <a href=&quot;https://www.mapbox.com/&quot;>Mapbox</a>'
+        attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
       />
-      <Marker position={[lat, long]} draggable={true} animate={true}>
-        <Popup>Hey ! I live here</Popup>
-      </Marker>
-      <Marker position={[latone, longtwo]} draggable={true} animate={true}>
-        <Popup>Hey ! I live here</Popup>
-      </Marker>
+      {mapMarkers.map((marker) => {
+        return (
+          <Marker position={marker.coordinates} draggable={true} animate={true}>
+            <Popup>{marker.location}</Popup>
+          </Marker>
+        );
+      })}
     </MapContainer>
   );
 }

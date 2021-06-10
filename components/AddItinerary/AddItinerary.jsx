@@ -96,7 +96,8 @@ function Day({ dayNumber }) {
   return (
     <div>
       <label htmlFor={day}>{day}</label>
-      <input id={day} name={day} type="text" placeholder="location" required />
+      <p>Insert postcode of the place and description of the day</p>
+      <input id={day} name={day} type="text" placeholder="postcode" required />
       <input
         id={description}
         name={description}

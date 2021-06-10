@@ -1,5 +1,5 @@
 import { authenticated } from "../../auth/auth";
-//import { insertItineraries } from "../../database/model";
+import { insertItineraries } from "../../database/model";
 import getGeoCode from "../../map/map";
 
 export default authenticated(async (req, res) => {
@@ -8,15 +8,14 @@ export default authenticated(async (req, res) => {
 
   switch (method) {
     case "POST": {
-      const itineraryObj = formatItineraryObj(req);
+      const itineraryObj = await formatItineraryObj(req);
       itineraryObj.user_id = session.data.user.id;
-      const { coordinates, location } = await getGeoCode(req.body.postcode);
-      itineraryObj.coordinates = coordinates;
-      itineraryObj.location = location;
+
       console.log(itineraryObj);
+
       try {
-        //await insertItineraries(itineraryObj);
-        res.redirect("/");
+        const { id } = await insertItineraries(itineraryObj);
+        res.redirect(`/itinerary/${id}`);
         break;
       } catch (error) {
         console.error(error);
@@ -30,8 +29,9 @@ export default authenticated(async (req, res) => {
   }
 });
 
-function formatItineraryObj(req) {
-  const { name, img, country, duration, budget, need_car } = req.body;
+async function formatItineraryObj(req) {
+  const { name, img, country, duration, budget, need_car, postcode } = req.body;
+
   const itineraryObj = { name, img, country, duration, budget, need_car };
   itineraryObj.need_car = itineraryObj.need_car.toLowerCase() === "yes";
   itineraryObj.budget = parseInt(itineraryObj.budget);
@@ -42,14 +42,19 @@ function formatItineraryObj(req) {
     (key) => key.includes("Day") || key.includes("Description")
   );
 
-  filteredDaysArray.forEach((element, index) => {
-    if (element.includes("Day")) {
-      itineraryObj.description[element] = {
-        location: req.body[filteredDaysArray[index]],
-        description: req.body[filteredDaysArray[index + 1]],
-      };
-    }
-  });
+  await Promise.all(
+    filteredDaysArray.map(async (element, index) => {
+      if (element.includes("Day")) {
+        const { coordinates, location } = await getGeoCode(
+          req.body[filteredDaysArray[index]]
+        );
+        itineraryObj.description[element] = {
+          location: { coordinates, location },
+          description: req.body[filteredDaysArray[index + 1]],
+        };
+      }
+    })
+  );
 
   return itineraryObj;
 }

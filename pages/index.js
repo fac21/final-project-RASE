@@ -11,20 +11,15 @@ import {
   Box,
 } from "../styles/StyledComponents/index.styled.jsx";
 
-import dynamic from "next/dynamic";
+
 
 export default function Home({ data, open, setOpen, access_token }) {
-  const MapWithNoSSR = dynamic(() => import("../components/Map1/mapone.jsx"), {
-    ssr: false
-  });
+  
   return (
     <Layout open={open} setOpen={setOpen} home>
       <Head>
         <title>Home</title>
       </Head>
-      <div id="mapid" className="mapClass">
-        <MapWithNoSSR />
-      </div>
       <SelectCountry />
       <StyledSection>
         <StyledContainer>
