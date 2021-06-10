@@ -75,3 +75,9 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+---
+## Cypress Tests
+
+<img width="452" alt="Screenshot 2021-06-10 at 17 39 28" src="https://user-images.githubusercontent.com/59439482/121564435-5a1d6f80-ca13-11eb-8ee4-339ea925ee78.png">
+
