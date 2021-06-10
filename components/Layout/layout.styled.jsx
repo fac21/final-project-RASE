@@ -17,4 +17,12 @@ export const StyledSection = styled.section`
     width: 10rem;
     height: 9rem;
   }
+
+  .home {
+    position: absolute;
+    top: 0rem;
+    right: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 `;

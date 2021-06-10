@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Burger from "../Burger/burger";
 import Menu from "../Menu/menu.jsx";
-import { StyledMenu, StyledLink } from "./Nav.styled.jsx"
+import { StyledMenu, StyledLink } from "./Nav.styled.jsx";
 
 export default function Nav({ open, setOpen, logged }) {
   return (
@@ -15,6 +15,11 @@ export default function Nav({ open, setOpen, logged }) {
           <a className="navTitle">UK TRAVEL SWAP</a>
         </Link>
       </StyledLink>
+      <Link href="/">
+        <a>
+          <img className="home" src="/home.svg" />
+        </a>
+      </Link>
       <div className="underline"></div>
     </StyledMenu>
   );
