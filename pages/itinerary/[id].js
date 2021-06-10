@@ -48,6 +48,12 @@ const StyledUl = styled.ul`
   }
 `;
 
+const StyledImage = styled.div`
+  img {
+    object-fit: cover;
+  }
+`;
+
 export default function Itinerary({ itineraryData, open, setOpen }) {
   const description = itineraryData.description;
   const MapWithNoSSR = dynamic(
@@ -98,25 +104,27 @@ export default function Itinerary({ itineraryData, open, setOpen }) {
         <hr></hr>
         <StyledUl>
           <ul>
-            {Object.keys(description).sort().map((key) => {
-              return (
-                <li key={description[key].description + Math.random()}>
-                  <p>{key}:</p>
-                  <p>
-                    {description[key].location ? (
-                      <span className="location">
-                        {description[key].location.location}
+            {Object.keys(description)
+              .sort()
+              .map((key) => {
+                return (
+                  <li key={description[key].description + Math.random()}>
+                    <p>{key}:</p>
+                    <p>
+                      {description[key].location ? (
+                        <span className="location">
+                          {description[key].location.location}
+                        </span>
+                      ) : (
+                        ""
+                      )}
+                      <span className="description">
+                        {description[key].description}
                       </span>
-                    ) : (
-                      ""
-                    )}
-                    <span className="description">
-                      {description[key].description}
-                    </span>
-                  </p>
-                </li>
-              );
-            })}
+                    </p>
+                  </li>
+                );
+              })}
           </ul>
         </StyledUl>
       </StyledSection>

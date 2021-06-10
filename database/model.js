@@ -47,6 +47,11 @@ export function getItineraryData(id) {
     return db.query(SELECT_ITINERARIES, [id]).then((result) => result.rows[0]);
 }
 
+export function getUsersItinerary(user_id) {
+    const SELECT_ITINERARIES = `SELECT * FROM itineraries_table WHERE user_id =$1`;
+    return db.query(SELECT_ITINERARIES, [user_id]).then((result) => result.rows);
+}
+
 export function insertItineraries({
     user_id,
     name,

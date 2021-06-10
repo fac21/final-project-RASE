@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { StyledItinerariesSection } from "./ItinerariesList.styled.jsx";
 
@@ -14,11 +13,9 @@ export default function ItinerariesList({ data }) {
               <Link key={itinerary.name} href={`/itinerary/${itinerary.id}`}>
                 <a>
                   <li>
-                    <Image
+                    <img
                       src={itinerary.img}
                       alt={itinerary.name}
-                      width={200}
-                      height={200}
                     />
                   </li>
                   <p>{itinerary.name}</p>

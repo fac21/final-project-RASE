@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledItineraries = styled.section`
   max-width: 20rem;
+  min-width: 5rem;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 2rem;
@@ -12,6 +13,7 @@ export const StyledItineraries = styled.section`
 
   img {
     object-fit: cover;
+    margin-bottom: 1rem;
   }
 
   .itinerary_info {

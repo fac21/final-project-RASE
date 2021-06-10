@@ -8,7 +8,7 @@ export default function Logout({ open, setOpen }) {
         <title>Log out</title>
       </Head>
       <form action="/api/logout" method="post">
-        <input id="logout" type="submit" value="Logout" />
+        <input class="input" id="logout" type="submit" value="Logout" />
       </form>
     </Layout>
   );

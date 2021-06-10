@@ -14,10 +14,11 @@ export const StyledItinerariesSection = styled.section`
   }
 
   ul {
-    margin-top: 0.5rem;
+    margin: 0 auto 0 auto;
     list-style: none;
+    max-width: 40rem;
     display: grid;
-    grid-gap: 1rem;
+    grid-gap: 0.5rem;
     grid-template-columns: 1fr 1fr;
     padding: 2rem;
   }
@@ -34,4 +35,12 @@ export const StyledItinerariesSection = styled.section`
   p {
     margin-top: 1rem;
   }
+
+  ul img{
+    max-width: 9.5rem;
+    height: 9.5rem;
+    object-fit: cover;
+  }
+
+
 `;

@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { StyledItineraries } from "./Itineraries.styled.jsx";
 
@@ -9,15 +8,15 @@ export default function Itineraries({ data }) {
       <StyledItineraries key={itinerary.id}>
         <Link href={`/itinerary/${itinerary.id}`}>
           <a>
-            <img
-              src={itinerary.img}
-              alt={itinerary.name + "photo"}
-              width={"100%"}
-              height={"100%"}
-            />
+            <img src={itinerary.img} alt={itinerary.name + "photo"} />
           </a>
         </Link>
         <div className="itinerary_info">
+          <Link href={`/itinerary/${itinerary.id}`}>
+            <a>
+              <img src={itinerary.img} alt={itinerary.name + "photo"} />
+            </a>
+          </Link>
           <h2>
             <Link href={`/itinerary/${itinerary.id}`}>
               <a>{itinerary.name}</a>

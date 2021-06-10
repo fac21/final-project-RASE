@@ -1,8 +1,8 @@
 import React from "react";
+import Image from "next/image";
 import Head from "next/head";
 import Layout from "../components/Layout/Layout.jsx";
 import SelectCountry from "../components/SelectCountry/SelectCountry.jsx";
-import Image from "next/image";
 import ItinerariesList from "../components/ItinerariesList/ItinerariesList.jsx";
 import { selectItineraries } from "../database/model";
 import { pageAuthenticated } from "../auth/auth";
@@ -49,6 +49,7 @@ export default function Home({ data, open, setOpen, logged }) {
 }
 
 export async function getServerSideProps({ req, res }) {
+  console.log("in");
   await pageAuthenticated(req);
   const sessionData = req.session;
   const data = await selectItineraries();
