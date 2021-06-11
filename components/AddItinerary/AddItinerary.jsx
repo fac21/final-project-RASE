@@ -3,34 +3,34 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const StyledForm = styled.form`
-display: flex;
-flex-direction: column;
-max-width: 40rem;
-margin-left: auto;
-margin-right: auto;
-margin-top: 2rem;
-padding: 2rem;
-  box-shadow: 0px 5px 15px rgb(0 0 0 / 5%);
->* {
-  margin-top: 0.5rem;
-}
-
-.car{
-  max-width: 30rem;
   display: flex;
-  justify-content: space-between;
-}
-
-.yes > *{
-  margin: 0.2rem;
-}
-
-.no > *{
-  margin: 0.2rem;
-}
-
-button{
+  flex-direction: column;
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 2rem;
+  padding: 2rem;
+  box-shadow: 0px 5px 15px rgb(0 0 0 / 5%);
+  > * {
+    margin-top: 0.5rem;
+  }
+
+  .car {
+    max-width: 30rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .yes > * {
+    margin: 0.2rem;
+  }
+
+  .no > * {
+    margin: 0.2rem;
+  }
+
+  button {
+    margin-top: 2rem;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -40,32 +40,31 @@ button{
     border: 1px solid #bfc8ad;
     font-family: Prata;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.32));
-}
+  }
 
-.days > *{
-  margin-top: 0.5rem;
-}
+  .days > * {
+    margin-top: 0.5rem;
+  }
 
-.addDay{
-  padding: 0.2rem;
-  font-family: Prata;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.32));
-  float: right;
-}
+  .addDay {
+    padding: 0.2rem;
+    font-family: Prata;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.32));
+    float: right;
+  }
 
-.dayItin > *{
-  margin: 0.2rem;
+  .dayItin > * {
+    margin: 0.2rem;
+  }
 
-}
+  input {
+    line-height: 1.3rem;
+  }
 
-input{
-  line-height: 1.3rem;
-}
-
-select{
-  line-height: 1.3rem;
-}
-`
+  select {
+    line-height: 1.3rem;
+  }
+`;
 
 export default function AddItinerary() {
   const [dayCount, setDayCount] = useState(1);
@@ -90,7 +89,7 @@ export default function AddItinerary() {
       </label>
       <input id="name" name="name" type="text" required />
 
-      <label htmlFor="img">Please upload a photo of the location</label>
+      <label htmlFor="img">Please enter a photo URL of the location</label>
       <input id="img" name="img" type="text" required />
 
       <label htmlFor="country">Country</label>
@@ -102,7 +101,7 @@ export default function AddItinerary() {
       </select>
 
       <label htmlFor="duration">
-        Please enter the duration of your trip
+        Please enter the duration of your trip (days)
         <span aria-hidden="true">*</span>
       </label>
       <input
@@ -115,7 +114,7 @@ export default function AddItinerary() {
       />
 
       <label htmlFor="budget">
-        Please enter a rough budget for your trip
+        Please enter a rough budget for your trip (in £s)
         <span aria-hidden="true">*</span>
       </label>
       <input
@@ -129,11 +128,17 @@ export default function AddItinerary() {
       <div className="car">
         <p>
           Did you need a car for this trip?
-        <span aria-hidden="true">*</span>
+          <span aria-hidden="true">*</span>
         </p>
         <div className="yes">
           <label htmlFor="carYes">Yes</label>
-          <input id="carYes" name="need_car" type="radio" value="Yes" required />
+          <input
+            id="carYes"
+            name="need_car"
+            type="radio"
+            value="Yes"
+            required
+          />
         </div>
         <div className="no">
           <label htmlFor="carNo">No</label>

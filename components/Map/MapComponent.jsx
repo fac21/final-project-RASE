@@ -7,7 +7,7 @@ function MyMap({ mapMarkers }) {
   return (
     <MapContainer
       center={mapMarkers[0] ? mapMarkers[0].coordinates : [52.34026, -1.585825]}
-      zoom={6}
+      zoom={7}
       scrollWheelZoom={false}
       style={{ height: "100%", width: "100%" }}
     >
