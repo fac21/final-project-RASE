@@ -72,10 +72,11 @@ export default function Itinerary({ itineraryData, open, setOpen, logged }) {
   const [mapMarkers, setMapMarkers] = useState([]);
 
   useEffect(() => {
-    const temporaryMapMarkers = Object.keys(description).map((key) => {
-      if (description[key].location) return description[key].location;
-      return;
-    });
+    const temporaryMapMarkers = Object.keys(description)
+      .map((key) => {
+        if (description[key].location) return description[key].location;
+      })
+      .filter((location) => location && location.location);
 
     setMapMarkers(temporaryMapMarkers);
 

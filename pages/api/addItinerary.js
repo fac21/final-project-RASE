@@ -46,10 +46,18 @@ async function formatItineraryObj(req) {
         const { coordinates, location } = await getGeoCode(
           req.body[filteredDaysArray[index]]
         );
-        itineraryObj.description[element] = {
-          location: { coordinates, location },
-          description: req.body[filteredDaysArray[index + 1]],
-        };
+
+        console.log(location)
+        if (location) {
+          itineraryObj.description[element] = {
+            location: { coordinates, location },
+            description: req.body[filteredDaysArray[index + 1]],
+          };
+        } else {
+          itineraryObj.description[element] = {
+            description: req.body[filteredDaysArray[index + 1]],
+          };
+        }
       }
     })
   );
