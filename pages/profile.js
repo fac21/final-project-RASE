@@ -130,7 +130,7 @@ export default function Profile({ open, setOpen, logged, user, itineraries }) {
         </StyledItinerarySection>
       </StyledSection>
       <form action="/api/logout" method="post">
-        <input class="input" id="logout" type="submit" value="Logout" />
+        <input className="input" id="logout" type="submit" value="Logout" />
       </form>
     </Layout>
   );
